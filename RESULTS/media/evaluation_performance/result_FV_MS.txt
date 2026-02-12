@@ -1,0 +1,109 @@
+(base) root@66da5caf5820:/workspace# ^C
+
+(base) root@66da5caf5820:/workspace#  cd /workspace ; /usr/bin/env /opt/conda/bin/python /root/.vscode-server/extensions/ms-python.debugpy-2025.10.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher 34252 -- /workspace/representation_analysis/RESULTS/code/test.py 
+===> Building model
+/opt/conda/lib/python3.10/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: '/opt/conda/lib/python3.10/site-packages/torchvision/image.so: undefined symbol: _ZN3c1017RegisterOperatorsD1Ev'If you don't plan on using image functionality from `torchvision.io`, you can ignore this warning. Otherwise, there might be something wrong with your environment. Did you have `libjpeg` or `libpng` installed before building `torchvision` from source?
+  warn(
+Using DINOv3 as Encoder and Mean-Standard Pooling as Local Feature Aggregation
+LoRA layers added to DINOv3 backbone
+Trainable parameters: 1.18M / 86.84M
+Loading weights from ./representation_analysis/RESULTS/Trainings/MSHead/fv_multi/checkpoint/model_best.pth.tar
+===> Running evaluation step
+====> Extracting Features of KITTI and calculating recalls
+----> Sequence 02
+Average inference time per batch: 0.0387 seconds
+Total FAISS search time: 0.0179 s
+Average time per query: 0.0142 ms
+02 - Recall@1: 70.10
+02 - F1: 90.60
+02 - AUC: 88.70
+----> Sequence 05
+Average inference time per batch: 0.0209 seconds
+Total FAISS search time: 0.0097 s
+Average time per query: 0.0055 ms
+05 - Recall@1: 85.02
+05 - F1: 93.21
+05 - AUC: 97.73
+----> Sequence 06
+Average inference time per batch: 0.0203 seconds
+Total FAISS search time: 0.0579 s
+Average time per query: 0.5738 ms
+06 - Recall@1: 97.03
+06 - F1: 98.48
+06 - AUC: 97.92
+
+
+====> Extracting Features of NCLT and calculating recalls
+Average inference time per batch: 0.0218 seconds
+2012-01-15 - Recall@1: 0.00
+2012-01-15 - F1: 0.00
+2012-01-15 - AUC: 0.00
+Average inference time per batch: 0.0188 seconds
+[Seq 2012-02-04] Search time 0.0537s (0.0219 ms/query)
+2012-02-04 - Recall@1: 43.34
+2012-02-04 - F1: 64.29
+2012-02-04 - AUC: 54.87
+Average inference time per batch: 0.0186 seconds
+[Seq 2012-06-15] Search time 0.0226s (0.0092 ms/query)
+[Seq 2012-06-15] Search time 0.0583s (0.0333 ms/query)
+2012-06-15 - Recall@1: 34.34
+2012-06-15 - F1: 51.54
+2012-06-15 - AUC: 40.86
+Average inference time per batch: 0.0187 seconds
+[Seq 2013-02-23] Search time 0.0194s (0.0079 ms/query)
+[Seq 2013-02-23] Search time 0.0120s (0.0068 ms/query)
+[Seq 2013-02-23] Search time 0.0101s (0.0043 ms/query)
+2013-02-23 - Recall@1: 11.71
+2013-02-23 - F1: 22.50
+2013-02-23 - AUC: 11.83
+
+################# Recall @ top 1 on NCLT ########################
+
+2012-02-04: 0.43
+2012-06-15: 0.34
+2013-02-23: 0.12
+====> Extracting Features of HeliLPR and calculating recalls
+Loading seq  rb01
+Average inference time per batch: 0.0191 seconds
+Loaded seq  rb01
+Total FAISS search time: 0.1745 s
+Average time per query: 0.0258 ms
+rb01 - Recall@1: 0.32
+rb01 - F1: 52.97
+rb01 - AUC: 26.86
+Loading seq  rb02
+Average inference time per batch: 0.0187 seconds
+Loaded seq  rb02
+Total FAISS search time: 0.1275 s
+Average time per query: 0.0245 ms
+rb02 - Recall@1: 0.10
+rb02 - F1: 97.50
+rb02 - AUC: 97.98
+Loading seq  rb03
+Average inference time per batch: 0.0176 seconds
+Loaded seq  rb03
+Total FAISS search time: 0.1445 s
+Average time per query: 0.0230 ms
+rb03 - Recall@1: 0.36
+rb03 - F1: 81.99
+rb03 - AUC: 87.61
+
+################# Recall @ top 1 on HeliLPR ########################
+
+rb01: 0.32
+rb02: 0.10
+rb03: 0.36
+====> Extracting Features of Toyota and calculating recalls
+Loading seq  00
+Average inference time per batch: 0.0183 seconds
+Loaded seq  00
+Total FAISS search time: 4.1993 s
+Average time per query: 0.9468 ms
+Saved PR curve to: ./representation_analysis/FMPlace/precision_recall_TOYOTA_seq_00.png
+00 - Recall@1: 71.84
+00 - F1: 84.42
+00 - AUC: 93.38
+
+################# Recall @ top 1 on Toyota ########################
+
+(base) root@66da5caf5820:/workspace# 

@@ -1,0 +1,93 @@
+import os
+import numpy as np  
+
+CHANNEL_LIST = [ 
+
+    #GEOMETRIC FEATURES
+    "omnivariance",
+    "anisotropy", 
+    "planarity", 
+    "linearity", 
+    "eigenentropy", 
+    "sphericity", 
+
+    #RADIOMMETRIC FEATURES
+    'albedo',
+    'intensity',
+
+    #STATISTICAL FEATURES
+    'density',
+
+    #STRUCTURAL FEATURE
+    'curvature',
+    'height_norm',
+
+]
+
+
+'''
+def combinations(iterable, r):
+    # combinations('ABCD', 2) → AB AC AD BC BD CD
+    # combinations(range(4), 3) → 012 013 023 123
+
+    pool = tuple(iterable)
+    n = len(pool)
+    if r > n:
+        return
+    indices = list(range(r))
+
+    yield tuple(pool[i] for i in indices)
+    while True:
+        for i in reversed(range(r)):
+            if indices[i] != i + n - r:
+                break
+        else:
+            return
+        indices[i] += 1
+        for j in range(i+1, r):
+            indices[j] = indices[j-1] + 1
+        yield tuple(pool[i] for i in indices)
+
+'''
+from itertools import combinations
+import math # Needed to calculate the binomial coefficient
+
+def generate_combinations(channel_list):
+    """
+    Generates all unique combinations of three elements from the input list.
+    The order does not count, and there is no repetition.
+    """
+    # itertools.combinations returns an iterator, which is memory efficient.
+    comb_iterator = combinations(channel_list, 3)
+    return comb_iterator
+   
+# --- Main Execution ---
+if __name__ == "__main__":
+
+    
+    N = len(CHANNEL_LIST) # N = 11
+    K = 3
+
+    # 2. Generate the combinations (returns an iterator)
+    comb_iterator = generate_combinations(CHANNEL_LIST)
+
+    # 3. Convert the iterator to a list and get the size
+    all_combinations = list(comb_iterator)
+    size = len(all_combinations)
+
+    # 4. Calculate the expected result using the binomial coefficient
+    # Binomial coefficient: "N choose K" -> C(11, 3)
+    # The formula is C(N, K) = N! / (K! * (N-K)!)
+    expected_size = math.comb(N, K)
+
+    print(f"Total number of input strings (N): {N}")
+    print(f"Combination dimension (K): {K}")
+    print("-" * 30)
+    print(f"Size of generated combinations (len()): {size}")
+    print(f"Binomial Coefficient C({N}, {K}): {expected_size}")
+    
+    # Optional: Print the first 5 combinations
+    print("-" * 30)
+    print("Example Combinations (first 5):")
+    for i in range(min(5, len(all_combinations))):
+        print(f"  {all_combinations[i]}")
