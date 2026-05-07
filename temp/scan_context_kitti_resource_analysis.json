@@ -1,0 +1,680 @@
+{
+  "report_type": "scan_context_kitti_resource_analysis",
+  "environment": {
+    "timestamp_utc": "2026-05-06T21:41:51.254553Z",
+    "hostname": "66da5caf5820",
+    "python_version": "3.10.13 (main, Sep 11 2023, 13:44:35) [GCC 11.2.0]",
+    "platform": "Linux-3.10.0-1160.108.1.el7.x86_64-x86_64-with-glibc2.31",
+    "processor": "x86_64",
+    "cpu_count_logical": 144,
+    "psutil_available": true,
+    "configuration": {
+      "dataset": "KITTI",
+      "eval_sequences": [
+        "02",
+        "05",
+        "06"
+      ],
+      "raw_sequences_folder": "/dataset/kitti-dataset/vanilla_dataset/sequences",
+      "representation_analysis_folder": "/dataset/kitti-dataset/lidar_representations/representation_analysis/",
+      "report_path": "./representation_analysis/temp/scan_context_kitti_resource_analysis.json",
+      "num_rings": 20,
+      "num_sectors": 60,
+      "max_radius": 80.0,
+      "min_z": -3.0,
+      "max_z": 5.0,
+      "use_yaw_alignment": true,
+      "num_candidates": 10,
+      "gt_threshold_m": 5.0
+    },
+    "metric_definitions": {
+      "generation_time_per_scan_ms": "Time required to load one KITTI .bin scan and construct its Scan Context descriptor.",
+      "ring_key_search_time_per_query_ms": "FAISS search time using the Scan Context ring key.",
+      "rerank_time_per_query_ms": "Time required to compare candidate Scan Context descriptors using yaw-aligned distance.",
+      "total_retrieval_time_per_query_ms": "Ring-key search plus Scan Context candidate re-ranking.",
+      "descriptor_memory_mb": "Memory used by the Scan Context descriptor array."
+    },
+    "system_memory": {
+      "total_bytes": 1352460783616,
+      "total_mb": 1289807.11328125,
+      "available_bytes": 1305280741376,
+      "available_mb": 1244812.71875
+    }
+  },
+  "summary": {
+    "total_experiment_wall_time_seconds": 2239.165402786806,
+    "num_sequences_requested": 3,
+    "num_sequences_successful": 3,
+    "num_sequences_failed": 0,
+    "overall_kitti": {
+      "num_sequences": 3,
+      "total_scans": 8523,
+      "total_queries": 3123,
+      "generation_time_per_scan_ms": {
+        "count": 3,
+        "mean": 41.434436519066914,
+        "std": 0.6851828033096692,
+        "min": 40.53759876702939,
+        "median": 41.565090158130545,
+        "p90": 42.07351453725876,
+        "p95": 42.137067584649785,
+        "p99": 42.187910022562605,
+        "max": 42.20062063204081,
+        "sum": 124.30330955720075
+      },
+      "retrieval_time_per_query_ms": {
+        "count": 3,
+        "mean": 600.8911121464781,
+        "std": 2.664809961480406,
+        "min": 598.1892841582251,
+        "median": 599.9667432268492,
+        "p90": 603.6071958888579,
+        "p95": 604.0622524716089,
+        "p99": 604.4262977378098,
+        "max": 604.51730905436,
+        "sum": 1802.6733364394343
+      },
+      "descriptor_memory_mb": {
+        "count": 3,
+        "mean": 13.00506591796875,
+        "std": 6.658009605471259,
+        "min": 5.03997802734375,
+        "median": 12.63885498046875,
+        "p90": 19.59686279296875,
+        "p95": 20.46661376953125,
+        "p99": 21.16241455078125,
+        "max": 21.33636474609375,
+        "sum": 39.01519775390625
+      },
+      "retrieval_metrics": {
+        "recall_at1": {
+          "count": 3,
+          "mean": 0.9290668630377313,
+          "std": 0.06204310524122865,
+          "min": 0.8488745980434446,
+          "median": 0.9383259911687594,
+          "p90": 0.987665198154544,
+          "p95": 0.9938325990277671,
+          "p99": 0.9987665197263456,
+          "max": 0.9999999999009902,
+          "sum": 2.787200589113194
+        },
+        "max_f1": {
+          "count": 3,
+          "mean": 0.9811142058243209,
+          "std": 0.01517901588750378,
+          "min": 0.9599999949635919,
+          "median": 0.9883177519863634,
+          "p90": 0.9936834468156783,
+          "p95": 0.9943541586693426,
+          "p99": 0.9948907281522742,
+          "max": 0.995024870523007,
+          "sum": 2.9433426174729624
+        },
+        "auc": {
+          "count": 3,
+          "mean": 0.99012629979525,
+          "std": 0.0057335026576673985,
+          "min": 0.9851485142406626,
+          "median": 0.9870721052272438,
+          "p90": 0.9959410449797237,
+          "p95": 0.9970496624487837,
+          "p99": 0.9979365564240317,
+          "max": 0.9981582799178437,
+          "sum": 2.97037889938575
+        }
+      }
+    }
+  },
+  "sequences": [
+    {
+      "sequence": "02",
+      "descriptor_generation": {
+        "num_scans": 4661,
+        "descriptor_shape": [
+          4661,
+          20,
+          60
+        ],
+        "descriptor_dtype": "float32",
+        "descriptor_memory_mb": 21.33636474609375,
+        "ring_key_shape": [
+          4661,
+          20
+        ],
+        "ring_key_dtype": "float32",
+        "ring_key_memory_mb": 0.3556060791015625,
+        "num_points_per_scan": {
+          "count": 4661,
+          "mean": 125627.1613387685,
+          "std": 3132.3867366979794,
+          "min": 106946.0,
+          "median": 126767.0,
+          "p90": 128130.0,
+          "p95": 128291.0,
+          "p99": 128664.0,
+          "max": 129261.0,
+          "sum": 585548199.0
+        },
+        "generation_time_per_scan_ms": {
+          "count": 4661,
+          "mean": 42.20062063204081,
+          "std": 1.4832676074196953,
+          "min": 35.09795665740967,
+          "median": 42.282918468117714,
+          "p90": 43.87522116303444,
+          "p95": 44.62260752916336,
+          "p99": 45.872833579778664,
+          "max": 50.00259727239609,
+          "sum": 196697.09276594222
+        },
+        "generation_cpu_time_per_scan_ms": {
+          "count": 4661,
+          "mean": 42.1754988199957,
+          "std": 4.713195515170429,
+          "min": 29.999999999972715,
+          "median": 40.000000000000036,
+          "p90": 50.00000000000071,
+          "p95": 50.00000000001137,
+          "p99": 59.99999999997385,
+          "max": 60.000000000030695,
+          "sum": 196579.99999999997
+        },
+        "generation_cpu_utilization_percent": {
+          "count": 4661,
+          "mean": 99.93380455659339,
+          "std": 10.47171478736957,
+          "min": 72.4960157439247,
+          "median": 95.69314506124353,
+          "p90": 117.46324627716498,
+          "p95": 119.14756825260149,
+          "p99": 130.4324810959086,
+          "max": 144.72395117520827,
+          "sum": 465791.46303828177
+        },
+        "generation_ram_delta_mb": {
+          "count": 4661,
+          "mean": 0.007491518719158979,
+          "std": 1.5904472964244636,
+          "min": -5.5546875,
+          "median": 0.0,
+          "p90": 1.8046875,
+          "p95": 1.8046875,
+          "p99": 2.0625,
+          "max": 4.4921875,
+          "sum": 34.91796875
+        },
+        "sequence_level": {
+          "total_generation_wall_time_seconds": 197.40057630464435,
+          "total_generation_cpu_time_seconds": 196.93,
+          "estimated_cpu_utilization_percent": 99.76161351022698,
+          "ram_rss_start_mb": 57.85546875,
+          "ram_rss_end_mb": 115.18359375,
+          "ram_rss_delta_mb": 57.328125
+        },
+        "generation_fps": 23.69633396435763
+      },
+      "evaluation": {
+        "sequence": "02",
+        "metrics": {
+          "recall_at1": 0.8488745980434446,
+          "max_f1": 0.9599999949635919,
+          "auc": 0.9870721052272438,
+          "recall_at1_percent": 84.88745980434446,
+          "max_f1_percent": 95.9999994963592,
+          "auc_percent": 98.70721052272438
+        },
+        "dataset": {
+          "num_descriptors_total": 4661,
+          "num_database_descriptors": 3400,
+          "num_query_descriptors": 1261,
+          "descriptor_dimension": 1200,
+          "descriptor_shape": [
+            20,
+            60
+          ],
+          "descriptor_dtype": "float32",
+          "descriptor_memory_mb": 21.33636474609375,
+          "db_split_index": 3400,
+          "gt_threshold_m": 5.0
+        },
+        "scan_context": {
+          "num_rings": 20,
+          "num_sectors": 60,
+          "max_radius_m": 80.0,
+          "use_yaw_alignment": true,
+          "num_candidates": 10
+        },
+        "retrieval_timing": {
+          "ring_key_index_build_time_ms": 0.49356184899806976,
+          "ring_key_search_time_per_query_ms": {
+            "count": 1261,
+            "mean": 0.0817581027462594,
+            "std": 0.5010639479463262,
+            "min": 0.05802512168884277,
+            "median": 0.062488019466400146,
+            "p90": 0.0783279538154602,
+            "p95": 0.08703209459781647,
+            "p99": 0.23552775382995614,
+            "max": 17.85362884402275,
+            "sum": 103.0969675630331
+          },
+          "rerank_time_per_query_ms": {
+            "count": 1261,
+            "mean": 599.8842288813097,
+            "std": 5.684920372341859,
+            "min": 592.7491243928671,
+            "median": 598.6894089728594,
+            "p90": 603.7877034395933,
+            "p95": 607.6203491538763,
+            "p99": 629.0292318910361,
+            "max": 672.8579252958298,
+            "sum": 756454.0126193315
+          },
+          "total_retrieval_time_per_query_ms": {
+            "count": 1261,
+            "mean": 599.9667432268492,
+            "std": 5.707057248585989,
+            "min": 592.8255654871464,
+            "median": 598.7611599266529,
+            "p90": 604.0065623819828,
+            "p95": 607.7000200748444,
+            "p99": 629.1183520108463,
+            "max": 672.921359539032,
+            "sum": 756558.0632090569
+          },
+          "total_ring_key_search_time_ms": 103.0969675630331,
+          "total_rerank_time_ms": 756454.0126193315,
+          "total_retrieval_time_ms": 756558.0632090569
+        },
+        "evaluation_timing": {
+          "ground_truth_matching_time_ms": 119.33409608900547,
+          "precision_recall_time_ms": 24.06693994998932
+        },
+        "ground_truth": {
+          "num_queries_with_ground_truth": 311,
+          "num_true_positive_top1": 264,
+          "positive_count_per_query": {
+            "count": 1261,
+            "mean": 2.1007137192704204,
+            "std": 3.8921023919041935,
+            "min": 0.0,
+            "median": 0.0,
+            "p90": 8.0,
+            "p95": 10.0,
+            "p99": 14.0,
+            "max": 17.0,
+            "sum": 2649.0
+          }
+        },
+        "retrieval_fps": 1.6667590517127997
+      }
+    },
+    {
+      "sequence": "05",
+      "descriptor_generation": {
+        "num_scans": 2761,
+        "descriptor_shape": [
+          2761,
+          20,
+          60
+        ],
+        "descriptor_dtype": "float32",
+        "descriptor_memory_mb": 12.63885498046875,
+        "ring_key_shape": [
+          2761,
+          20
+        ],
+        "ring_key_dtype": "float32",
+        "ring_key_memory_mb": 0.2106475830078125,
+        "num_points_per_scan": {
+          "count": 2761,
+          "mean": 125037.6595436436,
+          "std": 2630.447920590277,
+          "min": 107038.0,
+          "median": 125898.0,
+          "p90": 127145.0,
+          "p95": 127336.0,
+          "p99": 127710.8,
+          "max": 128267.0,
+          "sum": 345228978.0
+        },
+        "generation_time_per_scan_ms": {
+          "count": 2761,
+          "mean": 41.565090158130545,
+          "std": 1.0469798815589175,
+          "min": 35.78956611454487,
+          "median": 41.70260392129421,
+          "p90": 42.48811677098274,
+          "p95": 42.82445088028908,
+          "p99": 44.228070601820946,
+          "max": 47.01806604862213,
+          "sum": 114761.21392659843
+        },
+        "generation_cpu_time_per_scan_ms": {
+          "count": 2761,
+          "mean": 41.528431727635024,
+          "std": 4.0528033281750675,
+          "min": 29.999999999972715,
+          "median": 39.99999999996362,
+          "p90": 49.999999999954525,
+          "p95": 50.00000000006821,
+          "p99": 50.0000000001819,
+          "max": 60.00000000005912,
+          "sum": 114660.0000000003
+        },
+        "generation_cpu_utilization_percent": {
+          "count": 2761,
+          "mean": 99.91160270508058,
+          "std": 9.398436479932426,
+          "min": 73.40460241324672,
+          "median": 96.3627095775008,
+          "p90": 118.74674849839083,
+          "p95": 120.08064560130128,
+          "p99": 122.54753714740121,
+          "max": 144.14826407908305,
+          "sum": 275855.9350687275
+        },
+        "generation_ram_delta_mb": {
+          "count": 2761,
+          "mean": 0.0006578798442593263,
+          "std": 0.03331100979955317,
+          "min": 0.0,
+          "median": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "p99": 0.0,
+          "max": 1.75,
+          "sum": 1.81640625
+        },
+        "sequence_level": {
+          "total_generation_wall_time_seconds": 115.14029246382415,
+          "total_generation_cpu_time_seconds": 114.86000000000013,
+          "estimated_cpu_utilization_percent": 99.75656439824304,
+          "ram_rss_start_mb": 112.15625,
+          "ram_rss_end_mb": 126.55859375,
+          "ram_rss_delta_mb": 14.40234375
+        },
+        "generation_fps": 24.058651050571342
+      },
+      "evaluation": {
+        "sequence": "05",
+        "metrics": {
+          "recall_at1": 0.9383259911687594,
+          "max_f1": 0.9883177519863634,
+          "auc": 0.9981582799178437,
+          "recall_at1_percent": 93.83259911687594,
+          "max_f1_percent": 98.83177519863634,
+          "auc_percent": 99.81582799178437
+        },
+        "dataset": {
+          "num_descriptors_total": 2761,
+          "num_database_descriptors": 1000,
+          "num_query_descriptors": 1761,
+          "descriptor_dimension": 1200,
+          "descriptor_shape": [
+            20,
+            60
+          ],
+          "descriptor_dtype": "float32",
+          "descriptor_memory_mb": 12.63885498046875,
+          "db_split_index": 1000,
+          "gt_threshold_m": 5.0
+        },
+        "scan_context": {
+          "num_rings": 20,
+          "num_sectors": 60,
+          "max_radius_m": 80.0,
+          "use_yaw_alignment": true,
+          "num_candidates": 10
+        },
+        "retrieval_timing": {
+          "ring_key_index_build_time_ms": 0.14842674136161804,
+          "ring_key_search_time_per_query_ms": {
+            "count": 1761,
+            "mean": 0.027387676372371026,
+            "std": 0.012064269690748867,
+            "min": 0.022411346435546875,
+            "median": 0.025406479835510254,
+            "p90": 0.03032386302947998,
+            "p95": 0.034013763070106506,
+            "p99": 0.057104602456094146,
+            "max": 0.15020184218883514,
+            "sum": 48.22969809174538
+          },
+          "rerank_time_per_query_ms": {
+            "count": 1761,
+            "mean": 604.4892909165,
+            "std": 5.689564528847414,
+            "min": 596.1128640919924,
+            "median": 603.0462626367807,
+            "p90": 609.3206442892551,
+            "p95": 614.523520693183,
+            "p99": 633.7341904640198,
+            "max": 638.7700345367193,
+            "sum": 1064505.6413039565
+          },
+          "total_retrieval_time_per_query_ms": {
+            "count": 1761,
+            "mean": 604.51730905436,
+            "std": 5.6901246522018365,
+            "min": 596.1396135389805,
+            "median": 603.0798498541117,
+            "p90": 609.3467697501183,
+            "p95": 614.5504899322987,
+            "p99": 633.7623830884695,
+            "max": 638.7972515076399,
+            "sum": 1064554.981244728
+          },
+          "total_ring_key_search_time_ms": 48.22969809174538,
+          "total_rerank_time_ms": 1064505.6413039565,
+          "total_retrieval_time_ms": 1064554.981244728
+        },
+        "evaluation_timing": {
+          "ground_truth_matching_time_ms": 56.222667917609215,
+          "precision_recall_time_ms": 24.52051267027855
+        },
+        "ground_truth": {
+          "num_queries_with_ground_truth": 454,
+          "num_true_positive_top1": 426,
+          "positive_count_per_query": {
+            "count": 1761,
+            "mean": 3.6053378762067005,
+            "std": 6.808265253794198,
+            "min": 0.0,
+            "median": 0.0,
+            "p90": 12.0,
+            "p95": 20.0,
+            "p99": 27.0,
+            "max": 28.0,
+            "sum": 6349.0
+          }
+        },
+        "retrieval_fps": 1.654212352602921
+      }
+    },
+    {
+      "sequence": "06",
+      "descriptor_generation": {
+        "num_scans": 1101,
+        "descriptor_shape": [
+          1101,
+          20,
+          60
+        ],
+        "descriptor_dtype": "float32",
+        "descriptor_memory_mb": 5.03997802734375,
+        "ring_key_shape": [
+          1101,
+          20
+        ],
+        "ring_key_dtype": "float32",
+        "ring_key_memory_mb": 0.0839996337890625,
+        "num_points_per_scan": {
+          "count": 1101,
+          "mean": 122300.35240690282,
+          "std": 2186.175123068805,
+          "min": 111982.0,
+          "median": 122874.0,
+          "p90": 124304.0,
+          "p95": 124684.0,
+          "p99": 124970.0,
+          "max": 125148.0,
+          "sum": 134652688.0
+        },
+        "generation_time_per_scan_ms": {
+          "count": 1101,
+          "mean": 40.53759876702939,
+          "std": 0.9155575451258245,
+          "min": 36.81422956287861,
+          "median": 40.626632049679756,
+          "p90": 41.35034419596195,
+          "p95": 41.788216680288315,
+          "p99": 42.87260212004185,
+          "max": 45.84689065814018,
+          "sum": 44631.89624249935
+        },
+        "generation_cpu_time_per_scan_ms": {
+          "count": 1101,
+          "mean": 40.51771117166224,
+          "std": 3.5152327959246805,
+          "min": 29.99999999974534,
+          "median": 39.99999999996362,
+          "p90": 40.00000000041837,
+          "p95": 49.99999999972715,
+          "p99": 50.0000000001819,
+          "max": 50.0000000001819,
+          "sum": 44610.00000000013
+        },
+        "generation_cpu_utilization_percent": {
+          "count": 1101,
+          "mean": 99.94414155459785,
+          "std": 8.30125786702739,
+          "min": 73.33491251562633,
+          "median": 98.58622141123782,
+          "p90": 105.2467044664761,
+          "p95": 121.65589326301873,
+          "p99": 124.24781035261192,
+          "max": 128.8231985879575,
+          "sum": 110038.49985161223
+        },
+        "generation_ram_delta_mb": {
+          "count": 1101,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "median": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "p99": 0.0,
+          "max": 0.0,
+          "sum": 0.0
+        },
+        "sequence_level": {
+          "total_generation_wall_time_seconds": 44.78302534483373,
+          "total_generation_cpu_time_seconds": 44.679999999999836,
+          "estimated_cpu_utilization_percent": 99.76994554512432,
+          "ram_rss_start_mb": 105.2890625,
+          "ram_rss_end_mb": 108.390625,
+          "ram_rss_delta_mb": 3.1015625
+        },
+        "generation_fps": 24.668456702308035
+      },
+      "evaluation": {
+        "sequence": "06",
+        "metrics": {
+          "recall_at1": 0.9999999999009902,
+          "max_f1": 0.995024870523007,
+          "auc": 0.9851485142406626,
+          "recall_at1_percent": 99.99999999009901,
+          "max_f1_percent": 99.50248705230071,
+          "auc_percent": 98.51485142406626
+        },
+        "dataset": {
+          "num_descriptors_total": 1101,
+          "num_database_descriptors": 1000,
+          "num_query_descriptors": 101,
+          "descriptor_dimension": 1200,
+          "descriptor_shape": [
+            20,
+            60
+          ],
+          "descriptor_dtype": "float32",
+          "descriptor_memory_mb": 5.03997802734375,
+          "db_split_index": 1000,
+          "gt_threshold_m": 5.0
+        },
+        "scan_context": {
+          "num_rings": 20,
+          "num_sectors": 60,
+          "max_radius_m": 80.0,
+          "use_yaw_alignment": true,
+          "num_candidates": 10
+        },
+        "retrieval_timing": {
+          "ring_key_index_build_time_ms": 0.16425177454948425,
+          "ring_key_search_time_per_query_ms": {
+            "count": 101,
+            "mean": 0.028252786043846963,
+            "std": 0.012681694963442744,
+            "min": 0.0234898179769516,
+            "median": 0.02526305615901947,
+            "p90": 0.03175809979438782,
+            "p95": 0.03319978713989258,
+            "p99": 0.06527639925479889,
+            "max": 0.14324113726615906,
+            "sum": 2.853531390428543
+          },
+          "rerank_time_per_query_ms": {
+            "count": 101,
+            "mean": 598.160348094926,
+            "std": 3.8118365087891233,
+            "min": 591.6179586201906,
+            "median": 597.4620897322893,
+            "p90": 603.4358851611614,
+            "p95": 606.6949628293514,
+            "p99": 607.16955922544,
+            "max": 611.3090012222528,
+            "sum": 60414.19515758753
+          },
+          "total_retrieval_time_per_query_ms": {
+            "count": 101,
+            "mean": 598.1892841582251,
+            "std": 3.812960136027386,
+            "min": 591.6441902518272,
+            "median": 597.4870920181274,
+            "p90": 603.4645959734917,
+            "p95": 606.7249849438667,
+            "p99": 607.200775295496,
+            "max": 611.3397646695375,
+            "sum": 60417.117699980736
+          },
+          "total_ring_key_search_time_ms": 2.853531390428543,
+          "total_rerank_time_ms": 60414.19515758753,
+          "total_retrieval_time_ms": 60417.117699980736
+        },
+        "evaluation_timing": {
+          "ground_truth_matching_time_ms": 4.25335019826889,
+          "precision_recall_time_ms": 22.62377366423607
+        },
+        "ground_truth": {
+          "num_queries_with_ground_truth": 101,
+          "num_true_positive_top1": 101,
+          "positive_count_per_query": {
+            "count": 101,
+            "mean": 13.287128712871286,
+            "std": 2.031127247201437,
+            "min": 9.0,
+            "median": 13.0,
+            "p90": 16.0,
+            "p95": 18.0,
+            "p99": 18.0,
+            "max": 19.0,
+            "sum": 1342.0
+          }
+        },
+        "retrieval_fps": 1.6717116579699434
+      }
+    }
+  ]
+}

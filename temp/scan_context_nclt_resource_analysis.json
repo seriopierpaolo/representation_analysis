@@ -1,0 +1,786 @@
+{
+  "report_type": "scan_context_nclt_resource_analysis",
+  "environment": {
+    "timestamp_utc": "2026-05-07T15:03:11.602890Z",
+    "hostname": "66da5caf5820",
+    "python_version": "3.10.13 (main, Sep 11 2023, 13:44:35) [GCC 11.2.0]",
+    "platform": "Linux-3.10.0-1160.108.1.el7.x86_64-x86_64-with-glibc2.31",
+    "processor": "x86_64",
+    "cpu_count_logical": 144,
+    "psutil_available": true,
+    "configuration": {
+      "dataset": "NCLT",
+      "raw_lidar_root": "/dataset/nclt-dataset/vanilla/pointcloud",
+      "representation_root": "/dataset/nclt-dataset/lidar_representations/representation_analysis",
+      "database_sequence": "2012-01-15",
+      "query_sequences": [
+        "2012-02-04",
+        "2012-06-15",
+        "2013-02-23"
+      ],
+      "eval_sequences": [
+        "2012-01-15",
+        "2012-02-04",
+        "2012-06-15",
+        "2013-02-23"
+      ],
+      "sample_interval": 2,
+      "gt_threshold_m": 5.0,
+      "num_rings": 20,
+      "num_sectors": 60,
+      "max_radius_m": 80.0,
+      "min_z": -5.0,
+      "max_z": 5.0,
+      "use_yaw_alignment": true,
+      "num_candidates": 10,
+      "bin_point_dim": 4,
+      "report_path": "./representation_analysis/temp/scan_context_nclt_resource_analysis.json"
+    },
+    "metric_definitions": {
+      "generation_time_per_scan_ms": "Time to load a raw NCLT point cloud and compute its Scan Context descriptor.",
+      "ring_key_search_time_per_query_ms": "FAISS search time using Scan Context ring keys.",
+      "rerank_time_per_query_ms": "Yaw-aligned Scan Context candidate re-ranking time.",
+      "total_retrieval_time_per_query_ms": "Ring-key search plus yaw-aligned re-ranking.",
+      "descriptor_memory_mb": "Memory occupied by Scan Context descriptors."
+    },
+    "system_memory": {
+      "total_bytes": 1352460783616,
+      "total_mb": 1289807.11328125,
+      "available_bytes": 1302277861376,
+      "available_mb": 1241948.94921875
+    }
+  },
+  "summary": {
+    "total_experiment_wall_time_seconds": 2724.3953275885433,
+    "num_sequences_requested": 4,
+    "num_sequences_successful": 4,
+    "num_sequences_failed": 0,
+    "failed_sequences": [],
+    "overall_nclt": {
+      "num_sequences": 4,
+      "database_sequence": "2012-01-15",
+      "query_sequences": [
+        "2012-02-04",
+        "2012-06-15",
+        "2013-02-23"
+      ],
+      "total_queries": 3,
+      "generation_time_per_scan_ms": {
+        "count": 4,
+        "mean": 680944.93891811,
+        "std": 195450.71248097176,
+        "min": 447524.39226582646,
+        "median": 643337.4169655144,
+        "p90": 888953.9316402748,
+        "p95": 939267.2305579296,
+        "p99": 979517.8696920535,
+        "max": 989580.5294755846,
+        "sum": 2723779.75567244
+      },
+      "descriptor_memory_mb": {
+        "count": 4,
+        "mean": 0.00457763671875,
+        "std": 0.0,
+        "min": 0.00457763671875,
+        "median": 0.00457763671875,
+        "p90": 0.00457763671875,
+        "p95": 0.00457763671875,
+        "p99": 0.00457763671875,
+        "max": 0.00457763671875,
+        "sum": 0.018310546875
+      },
+      "retrieval_time_per_query_ms": {
+        "count": 3,
+        "mean": 48.415269081791244,
+        "std": 7.2056020469010305,
+        "min": 42.80323535203934,
+        "median": 43.85515674948692,
+        "p90": 55.64096346497536,
+        "p95": 57.11418930441141,
+        "p99": 58.292769975960255,
+        "max": 58.587415143847466,
+        "sum": 145.24580724537373
+      },
+      "retrieval_metrics": {
+        "recall_at1": {
+          "count": 3,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "median": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "p99": 0.0,
+          "max": 0.0,
+          "sum": 0.0
+        },
+        "max_f1": {
+          "count": 3,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "median": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "p99": 0.0,
+          "max": 0.0,
+          "sum": 0.0
+        },
+        "auc": {
+          "count": 3,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "median": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "p99": 0.0,
+          "max": 0.0,
+          "sum": 0.0
+        }
+      }
+    }
+  },
+  "descriptor_generation": [
+    {
+      "sequence": "2012-01-15",
+      "num_scans": 1,
+      "descriptor_shape": [
+        1,
+        20,
+        60
+      ],
+      "descriptor_dtype": "float32",
+      "descriptor_memory_mb": 0.00457763671875,
+      "ring_key_shape": [
+        1,
+        20
+      ],
+      "ring_key_dtype": "float32",
+      "ring_key_memory_mb": 7.62939453125e-05,
+      "num_points_per_scan": {
+        "count": 1,
+        "mean": 2606693975.0,
+        "std": 0.0,
+        "min": 2606693975.0,
+        "median": 2606693975.0,
+        "p90": 2606693975.0,
+        "p95": 2606693975.0,
+        "p99": 2606693975.0,
+        "max": 2606693975.0,
+        "sum": 2606693975.0
+      },
+      "generation_time_per_scan_ms": {
+        "count": 1,
+        "mean": 989580.5294755846,
+        "std": 0.0,
+        "min": 989580.5294755846,
+        "median": 989580.5294755846,
+        "p90": 989580.5294755846,
+        "p95": 989580.5294755846,
+        "p99": 989580.5294755846,
+        "max": 989580.5294755846,
+        "sum": 989580.5294755846
+      },
+      "generation_cpu_time_per_scan_ms": {
+        "count": 1,
+        "mean": 987230.0,
+        "std": 0.0,
+        "min": 987230.0,
+        "median": 987230.0,
+        "p90": 987230.0,
+        "p95": 987230.0,
+        "p99": 987230.0,
+        "max": 987230.0,
+        "sum": 987230.0
+      },
+      "generation_cpu_utilization_percent": {
+        "count": 1,
+        "mean": 99.76247213788349,
+        "std": 0.0,
+        "min": 99.76247213788349,
+        "median": 99.76247213788349,
+        "p90": 99.76247213788349,
+        "p95": 99.76247213788349,
+        "p99": 99.76247213788349,
+        "max": 99.76247213788349,
+        "sum": 99.76247213788349
+      },
+      "generation_ram_delta_mb": {
+        "count": 1,
+        "mean": 39775.59765625,
+        "std": 0.0,
+        "min": 39775.59765625,
+        "median": 39775.59765625,
+        "p90": 39775.59765625,
+        "p95": 39775.59765625,
+        "p99": 39775.59765625,
+        "max": 39775.59765625,
+        "sum": 39775.59765625
+      },
+      "generation_fps": 0.0010105291789945959,
+      "sequence_level": {
+        "total_generation_wall_time_seconds": 989.5815763175488,
+        "total_generation_cpu_time_seconds": 987.23,
+        "estimated_cpu_utilization_percent": 99.76236660283233,
+        "ram_rss_start_mb": 57.22265625,
+        "ram_rss_end_mb": 39832.82421875,
+        "ram_rss_delta_mb": 39775.6015625
+      }
+    },
+    {
+      "sequence": "2012-02-04",
+      "num_scans": 1,
+      "descriptor_shape": [
+        1,
+        20,
+        60
+      ],
+      "descriptor_dtype": "float32",
+      "descriptor_memory_mb": 0.00457763671875,
+      "ring_key_shape": [
+        1,
+        20
+      ],
+      "ring_key_dtype": "float32",
+      "ring_key_memory_mb": 7.62939453125e-05,
+      "num_points_per_scan": {
+        "count": 1,
+        "mean": 1778715088.0,
+        "std": 0.0,
+        "min": 1778715088.0,
+        "median": 1778715088.0,
+        "p90": 1778715088.0,
+        "p95": 1778715088.0,
+        "p99": 1778715088.0,
+        "max": 1778715088.0,
+        "sum": 1778715088.0
+      },
+      "generation_time_per_scan_ms": {
+        "count": 1,
+        "mean": 632516.2972398102,
+        "std": 0.0,
+        "min": 632516.2972398102,
+        "median": 632516.2972398102,
+        "p90": 632516.2972398102,
+        "p95": 632516.2972398102,
+        "p99": 632516.2972398102,
+        "max": 632516.2972398102,
+        "sum": 632516.2972398102
+      },
+      "generation_cpu_time_per_scan_ms": {
+        "count": 1,
+        "mean": 631000.0000000002,
+        "std": 0.0,
+        "min": 631000.0000000002,
+        "median": 631000.0000000002,
+        "p90": 631000.0000000002,
+        "p95": 631000.0000000002,
+        "p99": 631000.0000000002,
+        "max": 631000.0000000002,
+        "sum": 631000.0000000002
+      },
+      "generation_cpu_utilization_percent": {
+        "count": 1,
+        "mean": 99.76027538793437,
+        "std": 0.0,
+        "min": 99.76027538793437,
+        "median": 99.76027538793437,
+        "p90": 99.76027538793437,
+        "p95": 99.76027538793437,
+        "p99": 99.76027538793437,
+        "max": 99.76027538793437,
+        "sum": 99.76027538793437
+      },
+      "generation_ram_delta_mb": {
+        "count": 1,
+        "mean": 27141.0390625,
+        "std": 0.0,
+        "min": 27141.0390625,
+        "median": 27141.0390625,
+        "p90": 27141.0390625,
+        "p95": 27141.0390625,
+        "p99": 27141.0390625,
+        "max": 27141.0390625,
+        "sum": 27141.0390625
+      },
+      "generation_fps": 0.0015809869316629848,
+      "sequence_level": {
+        "total_generation_wall_time_seconds": 632.5170449595898,
+        "total_generation_cpu_time_seconds": 631.0000000000002,
+        "estimated_cpu_utilization_percent": 99.76015745794068,
+        "ram_rss_start_mb": 58.45703125,
+        "ram_rss_end_mb": 27199.49609375,
+        "ram_rss_delta_mb": 27141.0390625
+      }
+    },
+    {
+      "sequence": "2012-06-15",
+      "num_scans": 1,
+      "descriptor_shape": [
+        1,
+        20,
+        60
+      ],
+      "descriptor_dtype": "float32",
+      "descriptor_memory_mb": 0.00457763671875,
+      "ring_key_shape": [
+        1,
+        20
+      ],
+      "ring_key_dtype": "float32",
+      "ring_key_memory_mb": 7.62939453125e-05,
+      "num_points_per_scan": {
+        "count": 1,
+        "mean": 1321479834.0,
+        "std": 0.0,
+        "min": 1321479834.0,
+        "median": 1321479834.0,
+        "p90": 1321479834.0,
+        "p95": 1321479834.0,
+        "p99": 1321479834.0,
+        "max": 1321479834.0,
+        "sum": 1321479834.0
+      },
+      "generation_time_per_scan_ms": {
+        "count": 1,
+        "mean": 447524.39226582646,
+        "std": 0.0,
+        "min": 447524.39226582646,
+        "median": 447524.39226582646,
+        "p90": 447524.39226582646,
+        "p95": 447524.39226582646,
+        "p99": 447524.39226582646,
+        "max": 447524.39226582646,
+        "sum": 447524.39226582646
+      },
+      "generation_cpu_time_per_scan_ms": {
+        "count": 1,
+        "mean": 446460.00000000006,
+        "std": 0.0,
+        "min": 446460.00000000006,
+        "median": 446460.00000000006,
+        "p90": 446460.00000000006,
+        "p95": 446460.00000000006,
+        "p99": 446460.00000000006,
+        "max": 446460.00000000006,
+        "sum": 446460.00000000006
+      },
+      "generation_cpu_utilization_percent": {
+        "count": 1,
+        "mean": 99.76215994385525,
+        "std": 0.0,
+        "min": 99.76215994385525,
+        "median": 99.76215994385525,
+        "p90": 99.76215994385525,
+        "p95": 99.76215994385525,
+        "p99": 99.76215994385525,
+        "max": 99.76215994385525,
+        "sum": 99.76215994385525
+      },
+      "generation_ram_delta_mb": {
+        "count": 1,
+        "mean": 20164.18359375,
+        "std": 0.0,
+        "min": 20164.18359375,
+        "median": 20164.18359375,
+        "p90": 20164.18359375,
+        "p95": 20164.18359375,
+        "p99": 20164.18359375,
+        "max": 20164.18359375,
+        "sum": 20164.18359375
+      },
+      "generation_fps": 0.002234515072881227,
+      "sequence_level": {
+        "total_generation_wall_time_seconds": 447.5251059848815,
+        "total_generation_cpu_time_seconds": 446.46000000000004,
+        "estimated_cpu_utilization_percent": 99.76200084182149,
+        "ram_rss_start_mb": 58.828125,
+        "ram_rss_end_mb": 20223.01171875,
+        "ram_rss_delta_mb": 20164.18359375
+      }
+    },
+    {
+      "sequence": "2013-02-23",
+      "num_scans": 1,
+      "descriptor_shape": [
+        1,
+        20,
+        60
+      ],
+      "descriptor_dtype": "float32",
+      "descriptor_memory_mb": 0.00457763671875,
+      "ring_key_shape": [
+        1,
+        20
+      ],
+      "ring_key_dtype": "float32",
+      "ring_key_memory_mb": 7.62939453125e-05,
+      "num_points_per_scan": {
+        "count": 1,
+        "mean": 2035264343.0,
+        "std": 0.0,
+        "min": 2035264343.0,
+        "median": 2035264343.0,
+        "p90": 2035264343.0,
+        "p95": 2035264343.0,
+        "p99": 2035264343.0,
+        "max": 2035264343.0,
+        "sum": 2035264343.0
+      },
+      "generation_time_per_scan_ms": {
+        "count": 1,
+        "mean": 654158.5366912186,
+        "std": 0.0,
+        "min": 654158.5366912186,
+        "median": 654158.5366912186,
+        "p90": 654158.5366912186,
+        "p95": 654158.5366912186,
+        "p99": 654158.5366912186,
+        "max": 654158.5366912186,
+        "sum": 654158.5366912186
+      },
+      "generation_cpu_time_per_scan_ms": {
+        "count": 1,
+        "mean": 652610.0000000001,
+        "std": 0.0,
+        "min": 652610.0000000001,
+        "median": 652610.0000000001,
+        "p90": 652610.0000000001,
+        "p95": 652610.0000000001,
+        "p99": 652610.0000000001,
+        "max": 652610.0000000001,
+        "sum": 652610.0000000001
+      },
+      "generation_cpu_utilization_percent": {
+        "count": 1,
+        "mean": 99.76327807337789,
+        "std": 0.0,
+        "min": 99.76327807337789,
+        "median": 99.76327807337789,
+        "p90": 99.76327807337789,
+        "p95": 99.76327807337789,
+        "p99": 99.76327807337789,
+        "max": 99.76327807337789,
+        "sum": 99.76327807337789
+      },
+      "generation_ram_delta_mb": {
+        "count": 1,
+        "mean": 31056.4453125,
+        "std": 0.0,
+        "min": 31056.4453125,
+        "median": 31056.4453125,
+        "p90": 31056.4453125,
+        "p95": 31056.4453125,
+        "p99": 31056.4453125,
+        "max": 31056.4453125,
+        "sum": 31056.4453125
+      },
+      "generation_fps": 0.001528681418816412,
+      "sequence_level": {
+        "total_generation_wall_time_seconds": 654.1591519005597,
+        "total_generation_cpu_time_seconds": 652.6100000000001,
+        "estimated_cpu_utilization_percent": 99.76318425018458,
+        "ram_rss_start_mb": 59.30859375,
+        "ram_rss_end_mb": 31115.75390625,
+        "ram_rss_delta_mb": 31056.4453125
+      }
+    }
+  ],
+  "query_evaluation": [
+    {
+      "database_sequence": "2012-01-15",
+      "query_sequence": "2012-02-04",
+      "metrics": {
+        "recall_at1": 0.0,
+        "max_f1": 0.0,
+        "auc": 0.0,
+        "recall_at1_percent": 0.0,
+        "max_f1_percent": 0.0,
+        "auc_percent": 0.0
+      },
+      "dataset": {
+        "num_database_descriptors": 1,
+        "num_query_descriptors": 1,
+        "descriptor_shape": [
+          20,
+          60
+        ],
+        "descriptor_dimension": 1200,
+        "descriptor_dtype": "float32",
+        "database_descriptor_memory_mb": 0.00457763671875,
+        "query_descriptor_memory_mb": 0.00457763671875,
+        "gt_threshold_m": 5.0
+      },
+      "scan_context": {
+        "num_rings": 20,
+        "num_sectors": 60,
+        "max_radius_m": 80.0,
+        "min_z": -5.0,
+        "max_z": 5.0,
+        "use_yaw_alignment": true,
+        "num_candidates": 10
+      },
+      "retrieval_timing": {
+        "ring_key_index_build_time_ms": 0.17358921468257904,
+        "ring_key_search_time_per_query_ms": {
+          "count": 1,
+          "mean": 14.766408130526543,
+          "std": 0.0,
+          "min": 14.766408130526543,
+          "median": 14.766408130526543,
+          "p90": 14.766408130526543,
+          "p95": 14.766408130526543,
+          "p99": 14.766408130526543,
+          "max": 14.766408130526543,
+          "sum": 14.766408130526543
+        },
+        "rerank_time_per_query_ms": {
+          "count": 1,
+          "mean": 43.80757547914982,
+          "std": 0.0,
+          "min": 43.80757547914982,
+          "median": 43.80757547914982,
+          "p90": 43.80757547914982,
+          "p95": 43.80757547914982,
+          "p99": 43.80757547914982,
+          "max": 43.80757547914982,
+          "sum": 43.80757547914982
+        },
+        "total_retrieval_time_per_query_ms": {
+          "count": 1,
+          "mean": 58.587415143847466,
+          "std": 0.0,
+          "min": 58.587415143847466,
+          "median": 58.587415143847466,
+          "p90": 58.587415143847466,
+          "p95": 58.587415143847466,
+          "p99": 58.587415143847466,
+          "max": 58.587415143847466,
+          "sum": 58.587415143847466
+        },
+        "total_ring_key_search_time_ms": 14.766408130526543,
+        "total_rerank_time_ms": 43.80757547914982,
+        "total_retrieval_time_ms": 58.587415143847466,
+        "retrieval_total_wall_time_seconds": 0.05859428085386753
+      },
+      "evaluation_timing": {
+        "ground_truth_matching_time_ms": 0.1214444637298584,
+        "precision_recall_time_ms": 0.0
+      },
+      "ground_truth": {
+        "num_queries_with_ground_truth": 0,
+        "num_true_positive_top1": 0,
+        "positive_count_per_query": {
+          "count": 1,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "median": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "p99": 0.0,
+          "max": 0.0,
+          "sum": 0.0
+        }
+      },
+      "retrieval_fps": 17.068512026767827
+    },
+    {
+      "database_sequence": "2012-01-15",
+      "query_sequence": "2012-06-15",
+      "metrics": {
+        "recall_at1": 0.0,
+        "max_f1": 0.0,
+        "auc": 0.0,
+        "recall_at1_percent": 0.0,
+        "max_f1_percent": 0.0,
+        "auc_percent": 0.0
+      },
+      "dataset": {
+        "num_database_descriptors": 1,
+        "num_query_descriptors": 1,
+        "descriptor_shape": [
+          20,
+          60
+        ],
+        "descriptor_dimension": 1200,
+        "descriptor_dtype": "float32",
+        "database_descriptor_memory_mb": 0.00457763671875,
+        "query_descriptor_memory_mb": 0.00457763671875,
+        "gt_threshold_m": 5.0
+      },
+      "scan_context": {
+        "num_rings": 20,
+        "num_sectors": 60,
+        "max_radius_m": 80.0,
+        "min_z": -5.0,
+        "max_z": 5.0,
+        "use_yaw_alignment": true,
+        "num_candidates": 10
+      },
+      "retrieval_timing": {
+        "ring_key_index_build_time_ms": 0.17358921468257904,
+        "ring_key_search_time_per_query_ms": {
+          "count": 1,
+          "mean": 0.03342144191265106,
+          "std": 0.0,
+          "min": 0.03342144191265106,
+          "median": 0.03342144191265106,
+          "p90": 0.03342144191265106,
+          "p95": 0.03342144191265106,
+          "p99": 0.03342144191265106,
+          "max": 0.03342144191265106,
+          "sum": 0.03342144191265106
+        },
+        "rerank_time_per_query_ms": {
+          "count": 1,
+          "mean": 43.820686638355255,
+          "std": 0.0,
+          "min": 43.820686638355255,
+          "median": 43.820686638355255,
+          "p90": 43.820686638355255,
+          "p95": 43.820686638355255,
+          "p99": 43.820686638355255,
+          "max": 43.820686638355255,
+          "sum": 43.820686638355255
+        },
+        "total_retrieval_time_per_query_ms": {
+          "count": 1,
+          "mean": 43.85515674948692,
+          "std": 0.0,
+          "min": 43.85515674948692,
+          "median": 43.85515674948692,
+          "p90": 43.85515674948692,
+          "p95": 43.85515674948692,
+          "p99": 43.85515674948692,
+          "max": 43.85515674948692,
+          "sum": 43.85515674948692
+        },
+        "total_ring_key_search_time_ms": 0.03342144191265106,
+        "total_rerank_time_ms": 43.820686638355255,
+        "total_retrieval_time_ms": 43.85515674948692,
+        "retrieval_total_wall_time_seconds": 0.043861983343958855
+      },
+      "evaluation_timing": {
+        "ground_truth_matching_time_ms": 0.1068115234375,
+        "precision_recall_time_ms": 0.0
+      },
+      "ground_truth": {
+        "num_queries_with_ground_truth": 0,
+        "num_true_positive_top1": 0,
+        "positive_count_per_query": {
+          "count": 1,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "median": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "p99": 0.0,
+          "max": 0.0,
+          "sum": 0.0
+        }
+      },
+      "retrieval_fps": 22.80233555456849
+    },
+    {
+      "database_sequence": "2012-01-15",
+      "query_sequence": "2013-02-23",
+      "metrics": {
+        "recall_at1": 0.0,
+        "max_f1": 0.0,
+        "auc": 0.0,
+        "recall_at1_percent": 0.0,
+        "max_f1_percent": 0.0,
+        "auc_percent": 0.0
+      },
+      "dataset": {
+        "num_database_descriptors": 1,
+        "num_query_descriptors": 1,
+        "descriptor_shape": [
+          20,
+          60
+        ],
+        "descriptor_dimension": 1200,
+        "descriptor_dtype": "float32",
+        "database_descriptor_memory_mb": 0.00457763671875,
+        "query_descriptor_memory_mb": 0.00457763671875,
+        "gt_threshold_m": 5.0
+      },
+      "scan_context": {
+        "num_rings": 20,
+        "num_sectors": 60,
+        "max_radius_m": 80.0,
+        "min_z": -5.0,
+        "max_z": 5.0,
+        "use_yaw_alignment": true,
+        "num_candidates": 10
+      },
+      "retrieval_timing": {
+        "ring_key_index_build_time_ms": 0.17358921468257904,
+        "ring_key_search_time_per_query_ms": {
+          "count": 1,
+          "mean": 0.09615905582904816,
+          "std": 0.0,
+          "min": 0.09615905582904816,
+          "median": 0.09615905582904816,
+          "p90": 0.09615905582904816,
+          "p95": 0.09615905582904816,
+          "p99": 0.09615905582904816,
+          "max": 0.09615905582904816,
+          "sum": 0.09615905582904816
+        },
+        "rerank_time_per_query_ms": {
+          "count": 1,
+          "mean": 42.7063200622797,
+          "std": 0.0,
+          "min": 42.7063200622797,
+          "median": 42.7063200622797,
+          "p90": 42.7063200622797,
+          "p95": 42.7063200622797,
+          "p99": 42.7063200622797,
+          "max": 42.7063200622797,
+          "sum": 42.7063200622797
+        },
+        "total_retrieval_time_per_query_ms": {
+          "count": 1,
+          "mean": 42.80323535203934,
+          "std": 0.0,
+          "min": 42.80323535203934,
+          "median": 42.80323535203934,
+          "p90": 42.80323535203934,
+          "p95": 42.80323535203934,
+          "p99": 42.80323535203934,
+          "max": 42.80323535203934,
+          "sum": 42.80323535203934
+        },
+        "total_ring_key_search_time_ms": 0.09615905582904816,
+        "total_rerank_time_ms": 42.7063200622797,
+        "total_retrieval_time_ms": 42.80323535203934,
+        "retrieval_total_wall_time_seconds": 0.042805127799510956
+      },
+      "evaluation_timing": {
+        "ground_truth_matching_time_ms": 0.039188191294670105,
+        "precision_recall_time_ms": 0.0
+      },
+      "ground_truth": {
+        "num_queries_with_ground_truth": 0,
+        "num_true_positive_top1": 0,
+        "positive_count_per_query": {
+          "count": 1,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "median": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "p99": 0.0,
+          "max": 0.0,
+          "sum": 0.0
+        }
+      },
+      "retrieval_fps": 23.362719938700977
+    }
+  ]
+}
