@@ -12,11 +12,11 @@ def model_selector(model, device):
     #padding = (int(pad_width/2), int(pad_height/2), int(pad_width/2), int(pad_height/2))
 
     if model == "resnet":
-        from models.resnet_architecture import ResNet50BEVModel
+        from models.resnet50vlad import ResNet50Vlad
         print("Using RESNET as Encoder")
-        rnae = ResNet50BEVModel().to(device)
-        base_model = rnae.encoder
-        projection_dimension = 512
+        resnet = ResNet50Vlad(device)
+        base_model = resnet
+        projection_dimension = 65536
         return base_model, projection_dimension
 
     elif model == "dino":
@@ -38,7 +38,7 @@ def model_selector(model, device):
         from models.dino2vlad import DinoVlad
         print("Using DINO+NetVLAD as Encoder")
         dinovlad_model = DinoVlad( device=device)
-        projection_dimension = 24576 #768*32
+        projection_dimension =  24576 #768*32
         #projection_dimension = 1024
         return dinovlad_model, projection_dimension
     

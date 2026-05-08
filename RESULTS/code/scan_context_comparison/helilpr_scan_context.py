@@ -6,6 +6,7 @@ import socket
 import platform
 import datetime
 import traceback
+import struct
 
 import numpy as np
 import faiss
@@ -41,11 +42,11 @@ import faiss
 #       rb02/velodyne_sync/
 #       rb03/velodyne_sync/
 #
-HELILPR_RAW_LIDAR_ROOT = "/dataset/helilpr/raw_lidar"
+HELILPR_RAW_LIDAR_ROOT = "/dataset/helilpr-dataset/vanilla"
 
 # Existing representation-analysis root used only to load Velodyne_gt.txt.
 HELILPR_REPRESENTATION_ROOT = (
-    "/dataset/helilpr/lidar_representations/representation_analysis"
+    "/dataset/helilpr-dataset/lidar_representations/representation_analysis"
 )
 
 REPORT_DIR = "./representation_analysis/temp"
@@ -171,8 +172,8 @@ def get_lidar_files(seq):
     """
 
     candidate_dirs = [
+        os.path.join(HELILPR_RAW_LIDAR_ROOT, seq, "Velodyne"),
         os.path.join(HELILPR_RAW_LIDAR_ROOT, seq),
-        os.path.join(HELILPR_RAW_LIDAR_ROOT, seq, "velodyne"),
         os.path.join(HELILPR_RAW_LIDAR_ROOT, seq, "velodyne_sync"),
         os.path.join(HELILPR_RAW_LIDAR_ROOT, "sequences", seq),
         os.path.join(HELILPR_RAW_LIDAR_ROOT, "sequences", seq, "velodyne"),
@@ -203,39 +204,33 @@ def get_lidar_files(seq):
     return files[::SAMPLE_INTERVAL]
 
 
-def load_pointcloud(path):
-    """
-    Loads one raw HeliLPR point cloud.
+def load_pointcloud(filename):
+    points = []
+    with open(filename, "rb") as file:
+            while True:
+                # 1. Read the exact size of one point (22 bytes)
+                data = file.read(22) 
+                
+                # 2. Check if we read a full point; if not, break the loop
+                if len(data) < 22:
+                    break
+                    
+                # 3. UNPACK THE DATA INSIDE THE LOOP
+                # Unpack x, y, z, intensity (16 bytes, 'ffff')
+                x, y, z, intensity = struct.unpack('ffff', data[:16])
+                
+                # Unpack ring (2 bytes, 'H') and time (4 bytes, 'f')
+                # Note: Since you only append [x, y, z, intensity], the ring and time 
+                # variables are unpacked but not used in the final list.
+                # ring = struct.unpack('H', data[16:18])[0]
+                # time = struct.unpack('f', data[18:22])[0]
+                
+                # 4. Append the desired point data
+                points.append([x, y, z, intensity])
+    points = np.array(points, dtype=np.float32)
+    return points
 
-    Supported:
-    - .npy with shape N x 3 or N x 4
-    - .bin as float32 with BIN_POINT_DIM columns
 
-    If HeliLPR raw files use another binary encoding, modify this function.
-    """
-
-    if path.endswith(".npy"):
-        points = np.load(path)
-
-    elif path.endswith(".bin"):
-        raw = np.fromfile(path, dtype=np.float32)
-
-        if raw.size % BIN_POINT_DIM != 0:
-            raise RuntimeError(
-                f"File {path} has {raw.size} float32 values, which is not "
-                f"divisible by BIN_POINT_DIM={BIN_POINT_DIM}. "
-                f"Set BIN_POINT_DIM correctly."
-            )
-
-        points = raw.reshape(-1, BIN_POINT_DIM)
-
-    else:
-        raise RuntimeError(f"Unsupported point-cloud file: {path}")
-
-    if points.ndim != 2 or points.shape[1] < 3:
-        raise RuntimeError(f"Point cloud must have shape N x 3 or N x 4: {path}")
-
-    return points[:, :3].astype(np.float32)
 
 
 def load_poses(seq):

@@ -148,7 +148,7 @@ def saveCheckpoint(state, is_best, model_out_path, filename='checkpoint.pth.tar'
 if __name__ == "__main__":
     
     opt = get_config()
-    device = torch.device("cuda:0")
+    device = torch.device("cuda:1")
     
     # Loading parameters
     #------------------------------------------------------
@@ -159,7 +159,7 @@ if __name__ == "__main__":
 
 
     #overwriting representations
-    REPRESENTATION = "fv_multi"
+    REPRESENTATION = "cartesian_multi"
     USE_NCLT = True
     USE_HELILPR = True
     USE_TOYOTA = True
@@ -174,6 +174,7 @@ if __name__ == "__main__":
 
     MODEL = "dino3vlad"
     MODEL = "dino3"
+    MODEL = "resnet"
 
     #image_input_size = (128, 128)
 

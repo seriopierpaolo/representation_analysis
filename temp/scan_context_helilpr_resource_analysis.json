@@ -1,0 +1,82 @@
+{
+  "report_type": "scan_context_helilpr_resource_analysis",
+  "environment": {
+    "timestamp_utc": "2026-05-08T08:17:39.036999Z",
+    "hostname": "66da5caf5820",
+    "python_version": "3.10.13 (main, Sep 11 2023, 13:44:35) [GCC 11.2.0]",
+    "platform": "Linux-3.10.0-1160.108.1.el7.x86_64-x86_64-with-glibc2.31",
+    "processor": "x86_64",
+    "cpu_count_logical": 144,
+    "psutil_available": true,
+    "configuration": {
+      "dataset": "HeliLPR",
+      "raw_lidar_root": "/dataset/helilpr-dataset/vanilla",
+      "representation_root": "/dataset/helilpr-dataset/lidar_representations/representation_analysis",
+      "eval_sequences": [
+        "rb01",
+        "rb02",
+        "rb03"
+      ],
+      "sample_interval": 1,
+      "gt_threshold_m": 5.0,
+      "num_rings": 20,
+      "num_sectors": 60,
+      "max_radius_m": 80.0,
+      "min_z": -5.0,
+      "max_z": 5.0,
+      "use_yaw_alignment": true,
+      "num_candidates": 10,
+      "bin_point_dim": 4,
+      "report_path": "./representation_analysis/temp/scan_context_helilpr_resource_analysis.json"
+    },
+    "metric_definitions": {
+      "generation_time_per_scan_ms": "Time to load a raw HeliLPR point cloud and compute its Scan Context descriptor.",
+      "ring_key_search_time_per_query_ms": "FAISS search time using Scan Context ring keys.",
+      "rerank_time_per_query_ms": "Yaw-aligned Scan Context candidate re-ranking time.",
+      "total_retrieval_time_per_query_ms": "Ring-key search plus yaw-aligned re-ranking.",
+      "descriptor_memory_mb": "Memory occupied by Scan Context descriptors.",
+      "recall_at1": "Top-1 place-recognition recall over queries that have at least one ground-truth positive."
+    },
+    "system_memory": {
+      "total_bytes": 1352460783616,
+      "total_mb": 1289807.11328125,
+      "available_bytes": 1301457760256,
+      "available_mb": 1241166.83984375
+    }
+  },
+  "summary": {
+    "total_experiment_wall_time_seconds": 0.36092525348067284,
+    "num_sequences_requested": 3,
+    "num_sequences_successful": 0,
+    "num_sequences_failed": 3,
+    "failed_sequences": [
+      {
+        "sequence": "rb01",
+        "error": {
+          "type": "AttributeError",
+          "message": "'NoneType' object has no attribute 'shape'",
+          "traceback": "Traceback (most recent call last):\n  File \"/workspace/./representation_analysis/RESULTS/code/scan_context_comparison/helilpr_scan_context.py\", line 882, in <module>\n    descriptors, ring_keys, poses, generation_summary = extract_scan_context_descriptors(seq)\n  File \"/workspace/./representation_analysis/RESULTS/code/scan_context_comparison/helilpr_scan_context.py\", line 405, in extract_scan_context_descriptors\n    num_points_values.append(points.shape[0])\nAttributeError: 'NoneType' object has no attribute 'shape'\n"
+        }
+      },
+      {
+        "sequence": "rb02",
+        "error": {
+          "type": "AttributeError",
+          "message": "'NoneType' object has no attribute 'shape'",
+          "traceback": "Traceback (most recent call last):\n  File \"/workspace/./representation_analysis/RESULTS/code/scan_context_comparison/helilpr_scan_context.py\", line 882, in <module>\n    descriptors, ring_keys, poses, generation_summary = extract_scan_context_descriptors(seq)\n  File \"/workspace/./representation_analysis/RESULTS/code/scan_context_comparison/helilpr_scan_context.py\", line 405, in extract_scan_context_descriptors\n    num_points_values.append(points.shape[0])\nAttributeError: 'NoneType' object has no attribute 'shape'\n"
+        }
+      },
+      {
+        "sequence": "rb03",
+        "error": {
+          "type": "AttributeError",
+          "message": "'NoneType' object has no attribute 'shape'",
+          "traceback": "Traceback (most recent call last):\n  File \"/workspace/./representation_analysis/RESULTS/code/scan_context_comparison/helilpr_scan_context.py\", line 882, in <module>\n    descriptors, ring_keys, poses, generation_summary = extract_scan_context_descriptors(seq)\n  File \"/workspace/./representation_analysis/RESULTS/code/scan_context_comparison/helilpr_scan_context.py\", line 405, in extract_scan_context_descriptors\n    num_points_values.append(points.shape[0])\nAttributeError: 'NoneType' object has no attribute 'shape'\n"
+        }
+      }
+    ],
+    "overall_helilpr": null
+  },
+  "descriptor_generation": [],
+  "sequence_evaluation": []
+}
