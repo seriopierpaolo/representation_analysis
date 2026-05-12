@@ -1,0 +1,106 @@
+root@66da5caf5820:/workspace# /opt/conda/bin/python /workspace/representation_analysis/RESULTS/code/test.py
+===> Building model
+/opt/conda/lib/python3.10/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: '/opt/conda/lib/python3.10/site-packages/torchvision/image.so: undefined symbol: _ZN3c1017RegisterOperatorsD1Ev'If you don't plan on using image functionality from `torchvision.io`, you can ignore this warning. Otherwise, there might be something wrong with your environment. Did you have `libjpeg` or `libpng` installed before building `torchvision` from source?
+  warn(
+Using RESNET as Encoder
+Trainable parameters: 23.64M / 23.64M
+Loading weights from ./representation_analysis/RESULTS/Trainings/resnet50vlad/fv_multi/model_best.pth.tar
+===> Running evaluation step
+====> Extracting Features of KITTI and calculating recalls
+----> Sequence 02
+Average inference time per batch: 0.0249 seconds
+Total FAISS search time: 0.3902 s
+Average time per query: 0.3094 ms
+02 - Recall@1: 10.93
+02 - F1: 27.91
+02 - AUC: 25.28
+----> Sequence 05
+Average inference time per batch: 0.0123 seconds
+Total FAISS search time: 0.1127 s
+Average time per query: 0.0640 ms
+05 - Recall@1: 26.87
+05 - F1: 47.28
+05 - AUC: 31.92
+----> Sequence 06
+Average inference time per batch: 0.0188 seconds
+Total FAISS search time: 0.0291 s
+Average time per query: 0.2879 ms
+06 - Recall@1: 48.51
+06 - F1: 70.00
+06 - AUC: 60.18
+
+
+====> Extracting Features of NCLT and calculating recalls
+Average inference time per batch: 0.0119 seconds
+2012-01-15 - Recall@1: 0.00
+2012-01-15 - F1: 0.00
+2012-01-15 - AUC: 0.00
+Average inference time per batch: 0.0129 seconds
+[Seq 2012-02-04] Search time 0.7367s (0.3013 ms/query)
+2012-02-04 - Recall@1: 5.01
+2012-02-04 - F1: 12.96
+2012-02-04 - AUC: 6.65
+Average inference time per batch: 0.0161 seconds
+[Seq 2012-06-15] Search time 0.7185s (0.2939 ms/query)
+[Seq 2012-06-15] Search time 0.8043s (0.4586 ms/query)
+2012-06-15 - Recall@1: 4.05
+2012-06-15 - F1: 11.88
+2012-06-15 - AUC: 6.73
+Average inference time per batch: 0.0143 seconds
+[Seq 2013-02-23] Search time 0.6748s (0.2760 ms/query)
+[Seq 2013-02-23] Search time 0.9884s (0.5635 ms/query)
+[Seq 2013-02-23] Search time 0.8045s (0.3460 ms/query)
+2013-02-23 - Recall@1: 0.42
+2013-02-23 - F1: 1.53
+2013-02-23 - AUC: 0.43
+
+################# Recall @ top 1 on NCLT ########################
+
+2012-02-04: 0.05
+2012-06-15: 0.04
+2013-02-23: 0.00
+====> Extracting Features of HeliLPR and calculating recalls
+Loading seq  rb01
+Average inference time per batch: 0.0100 seconds
+Loaded seq  rb01
+Total FAISS search time: 12.3438 s
+Average time per query: 1.8244 ms
+rb01 - Recall@1: 33.67
+rb01 - F1: 54.26
+rb01 - AUC: 43.97
+Loading seq  rb02
+Average inference time per batch: 0.0102 seconds
+Loaded seq  rb02
+Total FAISS search time: 5.4200 s
+Average time per query: 1.0399 ms
+rb02 - Recall@1: 10.39
+rb02 - F1: 89.17
+rb02 - AUC: 90.31
+Loading seq  rb03
+Average inference time per batch: 0.0115 seconds
+Loaded seq  rb03
+Total FAISS search time: 12.1962 s
+Average time per query: 1.9396 ms
+rb03 - Recall@1: 9.21
+rb03 - F1: 24.71
+rb03 - AUC: 18.08
+
+################# Recall @ top 1 on HeliLPR ########################
+
+rb01: 0.34
+rb02: 0.10
+rb03: 0.09
+====> Extracting Features of Toyota and calculating recalls
+Loading seq  00
+Average inference time per batch: 0.0127 seconds
+Loaded seq  00
+Total FAISS search time: 184.7297 s
+Average time per query: 41.6527 ms
+Saved PR curve to: ./representation_analysis/FMPlace/precision_recall_TOYOTA_seq_00.png
+00 - Recall@1: 65.34
+00 - F1: 79.14
+00 - AUC: 80.39
+
+################# Recall @ top 1 on Toyota ########################
+
+root@66da5caf5820:/workspace# 

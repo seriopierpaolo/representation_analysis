@@ -25,13 +25,14 @@ from utils.config_reader import get_config
 # Configuration
 # ============================================================
 
-REPRESENTATION = "cartesian_multi"
-MODEL = "dino3"
+REPRESENTATION = "fv_multi"
+MODEL = "dino3vlad"
 
 KITTI_EVAL_SEQUENCES = ["02", "05", "06"]
 
 CHECKPOINT_PATH = (
     "./representation_analysis/RESULTS/Trainings/"
+    + MODEL + "/" 
     + REPRESENTATION
     + "/checkpoint/"
 )

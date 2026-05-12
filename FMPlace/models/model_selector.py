@@ -11,7 +11,7 @@ def model_selector(model, device):
     # Pad in (left, top, right, bottom) format
     #padding = (int(pad_width/2), int(pad_height/2), int(pad_width/2), int(pad_height/2))
 
-    if model == "resnet":
+    if model == "resnet50vlad":
         from models.resnet50vlad import ResNet50Vlad
         print("Using RESNET as Encoder")
         resnet = ResNet50Vlad(device)

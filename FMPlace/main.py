@@ -159,7 +159,7 @@ if __name__ == "__main__":
 
 
     #overwriting representations
-    REPRESENTATION = "cartesian_multi"
+    REPRESENTATION = "fv_multi"
     USE_NCLT = True
     USE_HELILPR = True
     USE_TOYOTA = True

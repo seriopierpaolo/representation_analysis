@@ -33,7 +33,7 @@ import faiss
 #   TOYOTA_RAW_LIDAR_ROOT/
 #       sequences/00/velodyne/
 #
-TOYOTA_RAW_LIDAR_ROOT = "/dataset/toyota-dataset/raw_lidar"
+TOYOTA_RAW_LIDAR_ROOT = "/dataset/toyota-dataset/vanilla"
 
 # Existing folder used by your Toyota code to load poses.txt.
 TOYOTA_POSES_ROOT = "/dataset/toyota-dataset/lidar_representations"
@@ -48,7 +48,7 @@ MAX_FRAMES = 10000
 
 # Same online evaluation settings as your Toyota code
 GT_THRESHOLD_M = 5.0
-WINDOW = 500
+WINDOW = 1000
 START_FRAME = 1000
 OFFSET = 100
 PR_NUM_THRESHOLDS = 500
@@ -159,7 +159,7 @@ def get_lidar_files(seq):
     """
 
     candidate_dirs = [
-        os.path.join(TOYOTA_RAW_LIDAR_ROOT, seq),
+        os.path.join(TOYOTA_RAW_LIDAR_ROOT, seq, "pcs"),
         os.path.join(TOYOTA_RAW_LIDAR_ROOT, seq, "velodyne"),
         os.path.join(TOYOTA_RAW_LIDAR_ROOT, seq, "velodyne_sync"),
         os.path.join(TOYOTA_RAW_LIDAR_ROOT, "sequences", seq),
@@ -194,40 +194,40 @@ def get_lidar_files(seq):
     return files
 
 
-def load_pointcloud(path):
+def load_pointcloud(bin_path: str) -> np.ndarray:
     """
-    Loads one raw Toyota point cloud.
+    Reads a point cloud file (.bin) formatted as XYZI (4 channels of float32) 
+    in the Point-Major (Interleaved) format.
 
-    Supported:
-    - .npy with shape N x 3 or N x 4
-    - .bin as float32 with BIN_POINT_DIM columns
+    Args:
+        bin_path: The full path to the .bin file (e.g., 'pc/000001.bin').
 
-    If Toyota raw files use another binary encoding, modify this function.
+    Returns:
+        A NumPy array (N x 4) where N is the number of points and the columns
+        are [X, Y, Z, I] before transformation. Returns an empty array if the 
+        file is not found.
     """
+    if not os.path.exists(bin_path):
+        print(f"Error: File not found at {bin_path}")
+        return np.array([])
 
-    if path.endswith(".npy"):
-        points = np.load(path)
+    # --- CRITICAL FIX: Assume Point-Major (Interleaved) Format ---
+    # Based on the successful alternative load functions provided by the user, 
+    # the data is stored as X1, Y1, Z1, I1, X2, Y2, Z2, I2, ...
+    
+    # Read the raw binary data and directly reshape to (N x 4)
+    data = np.fromfile(bin_path, dtype=np.float32)
+    
+    # We must check if the total number of elements is divisible by 4.
+    if data.size % 4 != 0:
+        print(f"Error: File size {data.size} is not divisible by 4 (XYZI). Check file integrity.")
+        return np.array([])
+        
+    # The resulting point_cloud is now correctly structured as [X, Y, Z, I]
+    point_cloud = data.reshape(-1, 4)
 
-    elif path.endswith(".bin"):
-        raw = np.fromfile(path, dtype=np.float32)
-
-        if raw.size % BIN_POINT_DIM != 0:
-            raise RuntimeError(
-                f"File {path} has {raw.size} float32 values, which is not "
-                f"divisible by BIN_POINT_DIM={BIN_POINT_DIM}. "
-                f"Set BIN_POINT_DIM correctly."
-            )
-
-        points = raw.reshape(-1, BIN_POINT_DIM)
-
-    else:
-        raise RuntimeError(f"Unsupported point-cloud file: {path}")
-
-    if points.ndim != 2 or points.shape[1] < 3:
-        raise RuntimeError(f"Point cloud must have shape N x 3 or N x 4: {path}")
-
-    return points[:, :3].astype(np.float32)
-
+    return point_cloud
+    
 
 def load_poses():
     """

@@ -37,7 +37,7 @@ class InferDataset(data.Dataset):
     def __init__(self, 
                  seq,
                  representation = 'caertesian_multi', 
-                 dataset_path = '/dataset/helilpr/lidar_representations/representation_analysis/',sample_inteval=1):
+                 dataset_path = '/dataset/helilpr-dataset/lidar_representations/representation_analysis/',sample_inteval=1):
         super().__init__()
 
         self.sample_inteval = sample_inteval

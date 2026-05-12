@@ -114,7 +114,7 @@ if __name__ == "__main__":
 
 
     #overwriting representations
-    REPRESENTATION = "cartesian_multi"
+    REPRESENTATION = "fv_multi"
     USE_NCLT = True
     USE_HELILPR = True
     USE_TOYOTA = True
@@ -128,7 +128,7 @@ if __name__ == "__main__":
     print('===> Building model')
 
     #MODEL = "dino3vlad"
-    MODEL = "dino3"
+    MODEL = "resnet50vlad"
 
     #image_input_size = (128, 128)
 
@@ -141,7 +141,7 @@ if __name__ == "__main__":
     num_total = sum(p.numel() for p in model.parameters())
     print(f"Trainable parameters: {num_trainable/1e6:.2f}M / {num_total/1e6:.2f}M")
 
-    model = load_weights(f"./representation_analysis/RESULTS/Trainings/MSHead/"+REPRESENTATION+"/checkpoint/", model)
+    model = load_weights(f"./representation_analysis/RESULTS/Trainings/"+MODEL+"/"+REPRESENTATION, model)
 
     #This code enables past weights loading, for testing
     mode = 'test'  # 'train' or 'test'

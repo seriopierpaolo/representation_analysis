@@ -1,0 +1,1297 @@
+{
+  "report_type": "kitti_model_inference_resource_analysis",
+  "environment": {
+    "timestamp_utc": "2026-05-12T09:56:55.096689Z",
+    "hostname": "66da5caf5820",
+    "python_version": "3.10.13 (main, Sep 11 2023, 13:44:35) [GCC 11.2.0]",
+    "platform": "Linux-3.10.0-1160.108.1.el7.x86_64-x86_64-with-glibc2.31",
+    "processor": "x86_64",
+    "cpu_count_logical": 144,
+    "torch_version": "2.2.0+cu121",
+    "cuda_available": true,
+    "cuda_device_count": 2,
+    "selected_device": "cuda:1",
+    "psutil_available": true,
+    "pynvml_available": false,
+    "nvml_gpu_snapshot_at_start": null,
+    "configuration": {
+      "dataset": "KITTI",
+      "eval_sequences": [
+        "02",
+        "05",
+        "06"
+      ],
+      "representation": "range_multi",
+      "model": "dino3vlad",
+      "checkpoint_path": "./representation_analysis/RESULTS/Trainings/dino3vlad/range_multi/checkpoint/",
+      "batch_size": 128,
+      "num_dataloader_workers": 24,
+      "num_warmup_batches": 3,
+      "report_path": "./representation_analysis/temp/kitti_inference_resource_analysis.json"
+    },
+    "metric_definitions": {
+      "batch_wall_time_ms": "Forward-pass elapsed time per batch, measured with time.perf_counter(). CUDA synchronization is applied before stopping the timer.",
+      "per_image_wall_time_ms": "batch_wall_time_ms divided by batch size.",
+      "batch_cpu_process_time_ms": "User + system CPU time consumed by the Python process during each model forward pass.",
+      "ram_rss_delta_mb": "Change in resident set size before and after each forward pass.",
+      "torch_cuda_max_memory_allocated_mb": "Peak CUDA memory allocated by PyTorch during the measured forward pass.",
+      "torch_cuda_max_memory_reserved_mb": "Peak CUDA memory reserved by PyTorch during the measured forward pass.",
+      "nvml_gpu_vram": "Optional NVIDIA VRAM usage from NVML. This may include memory outside PyTorch.",
+      "faiss_search_time_ms_per_query": "Time needed by FAISS to retrieve the nearest database descriptor per query."
+    },
+    "reviewer_facing_notes": [
+      "This report is restricted to KITTI only.",
+      "Inference latency excludes dataloader time and descriptor evaluation time; it measures the neural-network forward pass.",
+      "FAISS retrieval time is reported separately from model inference.",
+      "Warm-up batches are excluded from timing.",
+      "GPU memory is reported using PyTorch CUDA statistics when CUDA is available. NVML VRAM is reported only if pynvml is available."
+    ],
+    "cuda_devices": [
+      {
+        "index": 0,
+        "name": "Tesla V100-PCIE-16GB",
+        "total_memory_bytes": 16935682048,
+        "total_memory_mb": 16151.125,
+        "major": 7,
+        "minor": 0,
+        "multi_processor_count": 80
+      },
+      {
+        "index": 1,
+        "name": "Tesla V100-PCIE-16GB",
+        "total_memory_bytes": 16935682048,
+        "total_memory_mb": 16151.125,
+        "major": 7,
+        "minor": 0,
+        "multi_processor_count": 80
+      }
+    ],
+    "system_memory": {
+      "total_bytes": 1352460783616,
+      "total_mb": 1289807.11328125,
+      "available_bytes": 1286099763200,
+      "available_mb": 1226520.3125
+    },
+    "model_parameters": {
+      "num_trainable": 1228800,
+      "num_total": 86889216,
+      "num_trainable_million": 1.2288,
+      "num_total_million": 86.889216
+    }
+  },
+  "summary": {
+    "total_experiment_wall_time_seconds": 50.14654735662043,
+    "num_sequences_requested": 3,
+    "num_sequences_successful": 3,
+    "num_sequences_failed": 0,
+    "overall_kitti": {
+      "num_sequences": 3,
+      "num_images": 8523,
+      "inference_per_image_wall_time_ms": {
+        "mean_across_sequences": {
+          "count": 3,
+          "mean": 3.839189124796588,
+          "std": 0.031623729415460815,
+          "min": 3.8080369047303493,
+          "median": 3.826975942252855,
+          "p90": 3.871438810375819,
+          "p95": 3.876996668891189,
+          "p99": 3.8814429557034855,
+          "max": 3.8825545274065596,
+          "sum": 11.517567374389763
+        },
+        "p95_across_sequences": {
+          "count": 3,
+          "mean": 3.988089139460641,
+          "std": 0.17773465441669115,
+          "min": 3.847311827121302,
+          "median": 3.8781427676440217,
+          "p90": 4.166678812422083,
+          "p95": 4.2027458180193396,
+          "p99": 4.231599422497146,
+          "max": 4.238812823616597,
+          "sum": 11.964267418381922
+        },
+        "p99_across_sequences": {
+          "count": 3,
+          "mean": 4.5107279885477345,
+          "std": 0.0534202109935462,
+          "min": 4.450425092439325,
+          "median": 4.501468157066807,
+          "p90": 4.564526204323018,
+          "p95": 4.572408460230044,
+          "p99": 4.578714264955665,
+          "max": 4.58029071613707,
+          "sum": 13.532183965643203
+        },
+        "max_across_sequences": {
+          "count": 3,
+          "mean": 4.711271136325448,
+          "std": 0.19079432330039311,
+          "min": 4.503328159645006,
+          "median": 4.66633493667596,
+          "p90": 4.904587237459494,
+          "p95": 4.934368775057435,
+          "p99": 4.9581940051357885,
+          "max": 4.964150312655377,
+          "sum": 14.133813408976343
+        }
+      },
+      "inference_batch_wall_time_ms": {
+        "mean_across_sequences": {
+          "count": 3,
+          "mean": 475.6671533863003,
+          "std": 3.0020683308676848,
+          "min": 471.4481199367179,
+          "median": 477.36625695550765,
+          "p90": 478.0229180044419,
+          "p95": 478.10500063555867,
+          "p99": 478.17066674045213,
+          "max": 478.1870832666755,
+          "sum": 1427.001460158901
+        }
+      },
+      "torch_cuda_peak_memory_mb": {
+        "max_allocated_across_sequences": {
+          "count": 3,
+          "mean": 1320.6935221354167,
+          "std": 14.872950737750251,
+          "min": 1310.1767578125,
+          "median": 1310.1767578125,
+          "p90": 1335.4169921875,
+          "p95": 1338.572021484375,
+          "p99": 1341.096044921875,
+          "max": 1341.72705078125,
+          "sum": 3962.08056640625
+        },
+        "max_reserved_across_sequences": {
+          "count": 3,
+          "mean": 1488.0,
+          "std": 0.0,
+          "min": 1488.0,
+          "median": 1488.0,
+          "p90": 1488.0,
+          "p95": 1488.0,
+          "p99": 1488.0,
+          "max": 1488.0,
+          "sum": 4464.0
+        }
+      },
+      "faiss_search_time_per_query_ms": {
+        "count": 3,
+        "mean": 0.2209094061342686,
+        "std": 0.1643181049936363,
+        "min": 0.0404680294790165,
+        "median": 0.1843178646253462,
+        "p90": 0.3872174323638238,
+        "p95": 0.4125798783311334,
+        "p99": 0.4328698351049812,
+        "max": 0.43794232429844315,
+        "sum": 0.6627282184028058
+      },
+      "faiss_total_search_time_ms": {
+        "count": 3,
+        "mean": 115.97373398641746,
+        "std": 83.07958210931801,
+        "min": 44.23217475414276,
+        "median": 71.26419991254807,
+        "p90": 200.19270181655884,
+        "p95": 216.30876455456018,
+        "p99": 229.20161474496126,
+        "max": 232.42482729256153,
+        "sum": 347.92120195925236
+      },
+      "retrieval_metrics": {
+        "recall_at1": {
+          "count": 3,
+          "mean": 0.8983054048085242,
+          "std": 0.08143704785495405,
+          "min": 0.8006430867909761,
+          "median": 0.8942731277336063,
+          "p90": 0.9788546254675135,
+          "p95": 0.9894273126842518,
+          "p99": 0.9978854624576425,
+          "max": 0.9999999999009902,
+          "sum": 2.6949162144255725
+        },
+        "max_f1": {
+          "count": 3,
+          "mean": 0.9759551493716754,
+          "std": 0.014961357939431952,
+          "min": 0.9584816082699054,
+          "median": 0.9743589693221137,
+          "p90": 0.9908916902828284,
+          "p95": 0.9929582804029177,
+          "p99": 0.9946115524989891,
+          "max": 0.995024870523007,
+          "sum": 2.927865448115026
+        },
+        "auc": {
+          "count": 3,
+          "mean": 0.9842861922105173,
+          "std": 0.00825078246473074,
+          "min": 0.9737775604086425,
+          "median": 0.9851485142407929,
+          "p90": 0.9921757044338518,
+          "p95": 0.9930541032079842,
+          "p99": 0.9937568222272901,
+          "max": 0.9939325019821166,
+          "sum": 2.952858576631552
+        }
+      },
+      "mean_fps_single_stream_equivalent": 260.4716692754705
+    }
+  },
+  "sequences": [
+    {
+      "sequence": "02",
+      "num_images": 4661,
+      "db_split_index": 3400,
+      "query_count": 1261,
+      "inference": {
+        "num_batches": 37,
+        "num_images": 4661,
+        "batch_size": {
+          "count": 37,
+          "mean": 125.97297297297297,
+          "std": 12.162162162162163,
+          "min": 53.0,
+          "median": 128.0,
+          "p90": 128.0,
+          "p95": 128.0,
+          "p99": 128.0,
+          "max": 128.0,
+          "sum": 4661.0
+        },
+        "batch_wall_time_seconds": {
+          "count": 37,
+          "mean": 0.47736625695550766,
+          "std": 0.035945247889376954,
+          "min": 0.263099966570735,
+          "median": 0.4822103902697563,
+          "p90": 0.4888148192316294,
+          "p95": 0.4898247294127941,
+          "p99": 0.49601546660065654,
+          "max": 0.49892782792449,
+          "sum": 17.662551507353783
+        },
+        "batch_wall_time_ms": {
+          "count": 37,
+          "mean": 477.36625695550765,
+          "std": 35.94524788937695,
+          "min": 263.099966570735,
+          "median": 482.2103902697563,
+          "p90": 488.8148192316294,
+          "p95": 489.8247294127941,
+          "p99": 496.0154666006565,
+          "max": 498.92782792449,
+          "sum": 17662.551507353783
+        },
+        "batch_cpu_process_time_seconds": {
+          "count": 37,
+          "mean": 0.5297297297297284,
+          "std": 0.1512021465328559,
+          "min": 0.2600000000000051,
+          "median": 0.4800000000000004,
+          "p90": 0.6939999999999985,
+          "p95": 0.9499999999999993,
+          "p99": 0.9564000000000002,
+          "max": 0.9600000000000009,
+          "sum": 19.59999999999995
+        },
+        "batch_cpu_process_time_ms": {
+          "count": 37,
+          "mean": 529.7297297297284,
+          "std": 151.20214653285592,
+          "min": 260.0000000000051,
+          "median": 480.00000000000045,
+          "p90": 693.9999999999985,
+          "p95": 949.9999999999993,
+          "p99": 956.4000000000003,
+          "max": 960.0000000000009,
+          "sum": 19599.999999999953
+        },
+        "batch_estimated_cpu_utilization_percent": {
+          "count": 37,
+          "mean": 110.91286186879148,
+          "std": 30.505713348484615,
+          "min": 97.22650105933334,
+          "median": 100.15336047047663,
+          "p90": 144.27303322744703,
+          "p95": 198.53843757868708,
+          "p99": 198.9656584777261,
+          "max": 199.17274955657368,
+          "sum": 4103.775889145285
+        },
+        "per_image_wall_time_seconds": {
+          "count": 37,
+          "mean": 0.0038080369047303496,
+          "std": 0.00019532540044084397,
+          "min": 0.003725478469277732,
+          "median": 0.0037677647487726063,
+          "p90": 0.0038227261742576958,
+          "p95": 0.0038473118271213024,
+          "p99": 0.00458029071613707,
+          "max": 0.004964150312655377,
+          "sum": 0.14089736547502293
+        },
+        "per_image_wall_time_ms": {
+          "count": 37,
+          "mean": 3.8080369047303493,
+          "std": 0.195325400440844,
+          "min": 3.725478469277732,
+          "median": 3.7677647487726063,
+          "p90": 3.8227261742576957,
+          "p95": 3.847311827121302,
+          "p99": 4.58029071613707,
+          "max": 4.964150312655377,
+          "sum": 140.89736547502292
+        },
+        "per_image_cpu_process_time_seconds": {
+          "count": 37,
+          "mean": 0.00421620028046914,
+          "std": 0.0011336871781003136,
+          "min": 0.003671874999999991,
+          "median": 0.003750000000000031,
+          "p90": 0.005880896226415153,
+          "p95": 0.0074218749999999944,
+          "p99": 0.007471875000000002,
+          "max": 0.007500000000000007,
+          "sum": 0.15599941037735818
+        },
+        "per_image_cpu_process_time_ms": {
+          "count": 37,
+          "mean": 4.216200280469141,
+          "std": 1.1336871781003135,
+          "min": 3.671874999999991,
+          "median": 3.750000000000031,
+          "p90": 5.880896226415153,
+          "p95": 7.421874999999995,
+          "p99": 7.4718750000000025,
+          "max": 7.500000000000007,
+          "sum": 155.9994103773582
+        },
+        "ram_rss_before_mb": {
+          "count": 37,
+          "mean": 5495.860853040541,
+          "std": 363.32377975987737,
+          "min": 4327.74609375,
+          "median": 5588.24609375,
+          "p90": 5761.1859375,
+          "p95": 5782.79609375,
+          "p99": 5800.08484375,
+          "max": 5804.40625,
+          "sum": 203346.8515625
+        },
+        "ram_rss_after_mb": {
+          "count": 37,
+          "mean": 5516.946368243243,
+          "std": 326.5304391732904,
+          "min": 4315.703125,
+          "median": 5588.24609375,
+          "p90": 5761.18828125,
+          "p95": 5782.79609375,
+          "p99": 5801.21234375,
+          "max": 5806.16796875,
+          "sum": 204127.015625
+        },
+        "ram_rss_delta_mb": {
+          "count": 37,
+          "mean": 21.0855152027027,
+          "std": 92.8566584900163,
+          "min": -32.1953125,
+          "median": 0.0,
+          "p90": 0.7093749999999975,
+          "p95": 83.01796874999835,
+          "p99": 412.94109375,
+          "max": 424.3359375,
+          "sum": 780.1640625
+        },
+        "torch_cuda_memory_allocated_mb": {
+          "count": 37,
+          "mean": 494.9578758445946,
+          "std": 15.000791807432432,
+          "min": 404.953125,
+          "median": 497.4580078125,
+          "p90": 497.4580078125,
+          "p95": 497.4580078125,
+          "p99": 497.4580078125,
+          "max": 497.4580078125,
+          "sum": 18313.44140625
+        },
+        "torch_cuda_memory_reserved_mb": {
+          "count": 37,
+          "mean": 1459.2972972972973,
+          "std": 143.68149175790344,
+          "min": 606.0,
+          "median": 1488.0,
+          "p90": 1488.0,
+          "p95": 1488.0,
+          "p99": 1488.0,
+          "max": 1488.0,
+          "sum": 53994.0
+        },
+        "torch_cuda_max_memory_allocated_mb": {
+          "count": 37,
+          "mean": 1302.709155933277,
+          "std": 33.520212487637245,
+          "min": 1119.75048828125,
+          "median": 1310.1767578125,
+          "p90": 1310.1767578125,
+          "p95": 1310.1767578125,
+          "p99": 1310.1767578125,
+          "max": 1310.1767578125,
+          "sum": 48200.23876953125
+        },
+        "torch_cuda_max_memory_reserved_mb": {
+          "count": 37,
+          "mean": 1483.1351351351352,
+          "std": 20.483562509725854,
+          "min": 1388.0,
+          "median": 1488.0,
+          "p90": 1488.0,
+          "p95": 1488.0,
+          "p99": 1488.0,
+          "max": 1488.0,
+          "sum": 54876.0
+        },
+        "nvml_gpu_vram": null,
+        "input_shape_examples": [
+          {
+            "shape": [
+              128,
+              3,
+              96,
+              512
+            ],
+            "dtype": "torch.float32"
+          }
+        ],
+        "local_feature_shape_examples": [
+          {
+            "shape": [
+              128,
+              768,
+              6,
+              32
+            ],
+            "dtype": "torch.float32"
+          }
+        ],
+        "global_descriptor_shape_examples": [
+          {
+            "shape": [
+              128,
+              24576
+            ],
+            "dtype": "torch.float32"
+          }
+        ],
+        "mean_fps_single_stream_equivalent": 262.60249703930083,
+        "p95_fps_single_stream_equivalent": 259.9217440475149,
+        "worst_case_fps_single_stream_equivalent": 201.44434334525405,
+        "sequence_level": {
+          "sequence": "02",
+          "total_inference_wall_time_seconds": 19.867945164442062,
+          "total_inference_cpu_process_time_seconds": 21.490000000000002,
+          "estimated_cpu_utilization_percent": 108.164180151156,
+          "ram_rss_start_mb": 4309.1640625,
+          "ram_rss_end_mb": 5800.015625,
+          "ram_rss_delta_mb": 1490.8515625,
+          "nvml_gpu_vram_sequence_delta": null,
+          "descriptor_array": {
+            "shape": [
+              4661,
+              24576
+            ],
+            "dtype": "float32",
+            "nbytes": 458194944,
+            "nbytes_mb": 436.96875
+          }
+        }
+      },
+      "evaluation": {
+        "sequence": "02",
+        "metrics": {
+          "recall_at1": 0.8006430867909761,
+          "max_f1": 0.9743589693221137,
+          "auc": 0.9737775604086425,
+          "recall_at1_percent": 80.0643086790976,
+          "max_f1_percent": 97.43589693221138,
+          "auc_percent": 97.37775604086426
+        },
+        "dataset": {
+          "num_descriptors_total": 4661,
+          "num_database_descriptors": 3400,
+          "num_query_descriptors": 1261,
+          "descriptor_dimension": 24576,
+          "descriptor_dtype": "float32",
+          "descriptor_memory_mb": 436.96875,
+          "database_descriptor_memory_mb": 318.75,
+          "query_descriptor_memory_mb": 118.21875,
+          "db_split_index": 3400,
+          "gt_threshold_m": 5.0
+        },
+        "faiss": {
+          "index_type": "IndexFlatL2",
+          "index_build_time_seconds": 0.1597875040024519,
+          "index_build_time_ms": 159.7875040024519,
+          "total_search_time_seconds": 0.23242482729256153,
+          "total_search_time_ms": 232.42482729256153,
+          "search_time_per_query_seconds": 0.00018431786462534618,
+          "search_time_per_query_ms": 0.1843178646253462
+        },
+        "evaluation_timing": {
+          "descriptor_normalization_time_seconds": 0.3929629437625408,
+          "descriptor_normalization_time_ms": 392.9629437625408,
+          "ground_truth_matching_total_time_seconds": 0.2115824967622757,
+          "ground_truth_matching_total_time_ms": 211.5824967622757,
+          "ground_truth_matching_per_query_time_seconds": {
+            "count": 1261,
+            "mean": 0.00016261319630586562,
+            "std": 5.791085619042504e-05,
+            "min": 0.00010073557496070862,
+            "median": 0.00015763193368911743,
+            "p90": 0.00018799491226673126,
+            "p95": 0.00019271112978458405,
+            "p99": 0.00020597949624061597,
+            "max": 0.0017045792192220688,
+            "sum": 0.20505524054169655
+          },
+          "ground_truth_matching_per_query_time_ms": {
+            "count": 1261,
+            "mean": 0.16261319630586563,
+            "std": 0.05791085619042505,
+            "min": 0.10073557496070862,
+            "median": 0.15763193368911743,
+            "p90": 0.18799491226673126,
+            "p95": 0.19271112978458405,
+            "p99": 0.20597949624061596,
+            "max": 1.7045792192220688,
+            "sum": 205.05524054169655
+          },
+          "precision_recall_time_seconds": 0.028928279876708984,
+          "precision_recall_time_ms": 28.928279876708984,
+          "total_evaluation_time_seconds": 1.0259833689779043,
+          "total_evaluation_time_ms": 1025.9833689779043
+        },
+        "ground_truth": {
+          "num_queries_with_ground_truth": 311,
+          "num_true_positive_top1": 249,
+          "positive_count_per_query": {
+            "count": 1261,
+            "mean": 2.1007137192704204,
+            "std": 3.8921023919041935,
+            "min": 0.0,
+            "median": 0.0,
+            "p90": 8.0,
+            "p95": 10.0,
+            "p99": 14.0,
+            "max": 17.0,
+            "sum": 2649.0
+          }
+        }
+      }
+    },
+    {
+      "sequence": "05",
+      "num_images": 2761,
+      "db_split_index": 1000,
+      "query_count": 1761,
+      "inference": {
+        "num_batches": 22,
+        "num_images": 2761,
+        "batch_size": {
+          "count": 22,
+          "mean": 125.5,
+          "std": 11.4564392373896,
+          "min": 73.0,
+          "median": 128.0,
+          "p90": 128.0,
+          "p95": 128.0,
+          "p99": 128.0,
+          "max": 128.0,
+          "sum": 2761.0
+        },
+        "batch_wall_time_seconds": {
+          "count": 22,
+          "mean": 0.4781870832666755,
+          "std": 0.030175024910759702,
+          "min": 0.3406424503773451,
+          "median": 0.48422339279204607,
+          "p90": 0.48626448307186365,
+          "p95": 0.48870947351679206,
+          "p99": 0.4951274900510907,
+          "max": 0.4968006443232298,
+          "sum": 10.52011583186686
+        },
+        "batch_wall_time_ms": {
+          "count": 22,
+          "mean": 478.1870832666755,
+          "std": 30.175024910759703,
+          "min": 340.6424503773451,
+          "median": 484.22339279204607,
+          "p90": 486.26448307186365,
+          "p95": 488.70947351679206,
+          "p99": 495.1274900510907,
+          "max": 496.8006443232298,
+          "sum": 10520.11583186686
+        },
+        "batch_cpu_process_time_seconds": {
+          "count": 22,
+          "mean": 0.5236363636363687,
+          "std": 0.1420481817919987,
+          "min": 0.3300000000000125,
+          "median": 0.4900000000000091,
+          "p90": 0.5,
+          "p95": 0.9275000000000024,
+          "p99": 0.9657999999999997,
+          "max": 0.9699999999999989,
+          "sum": 11.52000000000011
+        },
+        "batch_cpu_process_time_ms": {
+          "count": 22,
+          "mean": 523.6363636363686,
+          "std": 142.04818179199873,
+          "min": 330.0000000000125,
+          "median": 490.0000000000091,
+          "p90": 500.0,
+          "p95": 927.5000000000024,
+          "p99": 965.7999999999997,
+          "max": 969.9999999999989,
+          "sum": 11520.00000000011
+        },
+        "batch_estimated_cpu_utilization_percent": {
+          "count": 22,
+          "mean": 109.33571332782722,
+          "std": 28.106275408898348,
+          "min": 96.82254061756561,
+          "median": 101.08016309050618,
+          "p90": 103.64483695882265,
+          "p95": 192.998948859306,
+          "p99": 198.27786769646525,
+          "max": 198.4316766169212,
+          "sum": 2405.385693212199
+        },
+        "per_image_wall_time_seconds": {
+          "count": 22,
+          "mean": 0.003826975942252854,
+          "std": 0.0001847639696484228,
+          "min": 0.0037541239435086027,
+          "median": 0.0037840278673684224,
+          "p90": 0.0038170758125488646,
+          "p95": 0.0038781427676440215,
+          "p99": 0.004501468157066806,
+          "max": 0.00466633493667596,
+          "sum": 0.08419347072956279
+        },
+        "per_image_wall_time_ms": {
+          "count": 22,
+          "mean": 3.826975942252855,
+          "std": 0.18476396964842276,
+          "min": 3.7541239435086027,
+          "median": 3.7840278673684224,
+          "p90": 3.8170758125488646,
+          "p95": 3.8781427676440217,
+          "p99": 4.501468157066807,
+          "max": 4.66633493667596,
+          "sum": 84.1934707295628
+        },
+        "per_image_cpu_process_time_seconds": {
+          "count": 22,
+          "mean": 0.004179201042963928,
+          "std": 0.0010621298125228615,
+          "min": 0.003671875000000102,
+          "median": 0.003828125000000071,
+          "p90": 0.004459118150685087,
+          "p95": 0.007276808647260302,
+          "p99": 0.007545312499999997,
+          "max": 0.007578124999999991,
+          "sum": 0.09194242294520641
+        },
+        "per_image_cpu_process_time_ms": {
+          "count": 22,
+          "mean": 4.1792010429639275,
+          "std": 1.0621298125228615,
+          "min": 3.671875000000102,
+          "median": 3.828125000000071,
+          "p90": 4.459118150685087,
+          "p95": 7.276808647260301,
+          "p99": 7.545312499999998,
+          "max": 7.578124999999991,
+          "sum": 91.9424229452064
+        },
+        "ram_rss_before_mb": {
+          "count": 22,
+          "mean": 6203.315873579545,
+          "std": 72.52139889887886,
+          "min": 6085.01171875,
+          "median": 6200.35546875,
+          "p90": 6301.159375,
+          "p95": 6313.759375,
+          "p99": 6323.839375,
+          "max": 6326.359375,
+          "sum": 136472.94921875
+        },
+        "ram_rss_after_mb": {
+          "count": 22,
+          "mean": 6204.232954545455,
+          "std": 70.91102001171471,
+          "min": 6098.35546875,
+          "median": 6200.35546875,
+          "p90": 6301.159375,
+          "p95": 6313.759375,
+          "p99": 6323.8424609375,
+          "max": 6326.36328125,
+          "sum": 136493.125
+        },
+        "ram_rss_delta_mb": {
+          "count": 22,
+          "mean": 0.9170809659090909,
+          "std": 15.118088513522606,
+          "min": -46.78515625,
+          "median": 0.0,
+          "p90": 0.02148437500000004,
+          "p95": 15.097265624999988,
+          "p99": 43.66097656249997,
+          "max": 51.04296875,
+          "sum": 20.17578125
+        },
+        "torch_cuda_memory_allocated_mb": {
+          "count": 22,
+          "mean": 494.37451171875,
+          "std": 14.130354254710024,
+          "min": 429.62109375,
+          "median": 497.4580078125,
+          "p90": 497.4580078125,
+          "p95": 497.4580078125,
+          "p99": 497.4580078125,
+          "max": 497.4580078125,
+          "sum": 10876.2392578125
+        },
+        "torch_cuda_memory_reserved_mb": {
+          "count": 22,
+          "mean": 1444.2727272727273,
+          "std": 163.18678138818325,
+          "min": 706.0,
+          "median": 1488.0,
+          "p90": 1488.0,
+          "p95": 1488.0,
+          "p99": 1488.0,
+          "max": 1488.0,
+          "sum": 31774.0
+        },
+        "torch_cuda_max_memory_allocated_mb": {
+          "count": 22,
+          "mean": 1306.0258123224432,
+          "std": 17.869609428755336,
+          "min": 1224.3017578125,
+          "median": 1310.1767578125,
+          "p90": 1310.1767578125,
+          "p95": 1310.1767578125,
+          "p99": 1310.1767578125,
+          "max": 1310.1767578125,
+          "sum": 28732.56787109375
+        },
+        "torch_cuda_max_memory_reserved_mb": {
+          "count": 22,
+          "mean": 1479.8181818181818,
+          "std": 26.048270512535282,
+          "min": 1388.0,
+          "median": 1488.0,
+          "p90": 1488.0,
+          "p95": 1488.0,
+          "p99": 1488.0,
+          "max": 1488.0,
+          "sum": 32556.0
+        },
+        "nvml_gpu_vram": null,
+        "input_shape_examples": [
+          {
+            "shape": [
+              128,
+              3,
+              96,
+              512
+            ],
+            "dtype": "torch.float32"
+          }
+        ],
+        "local_feature_shape_examples": [
+          {
+            "shape": [
+              128,
+              768,
+              6,
+              32
+            ],
+            "dtype": "torch.float32"
+          }
+        ],
+        "global_descriptor_shape_examples": [
+          {
+            "shape": [
+              128,
+              24576
+            ],
+            "dtype": "torch.float32"
+          }
+        ],
+        "mean_fps_single_stream_equivalent": 261.30292301009933,
+        "p95_fps_single_stream_equivalent": 257.85538591904435,
+        "worst_case_fps_single_stream_equivalent": 214.30094786816673,
+        "sequence_level": {
+          "sequence": "05",
+          "total_inference_wall_time_seconds": 12.19590331800282,
+          "total_inference_cpu_process_time_seconds": 12.88000000000001,
+          "estimated_cpu_utilization_percent": 105.60923339714714,
+          "ram_rss_start_mb": 6068.0859375,
+          "ram_rss_end_mb": 6326.96484375,
+          "ram_rss_delta_mb": 258.87890625,
+          "nvml_gpu_vram_sequence_delta": null,
+          "descriptor_array": {
+            "shape": [
+              2761,
+              24576
+            ],
+            "dtype": "float32",
+            "nbytes": 271417344,
+            "nbytes_mb": 258.84375
+          }
+        }
+      },
+      "evaluation": {
+        "sequence": "05",
+        "metrics": {
+          "recall_at1": 0.8942731277336063,
+          "max_f1": 0.9584816082699054,
+          "auc": 0.9939325019821166,
+          "recall_at1_percent": 89.42731277336064,
+          "max_f1_percent": 95.84816082699054,
+          "auc_percent": 99.39325019821166
+        },
+        "dataset": {
+          "num_descriptors_total": 2761,
+          "num_database_descriptors": 1000,
+          "num_query_descriptors": 1761,
+          "descriptor_dimension": 24576,
+          "descriptor_dtype": "float32",
+          "descriptor_memory_mb": 258.84375,
+          "database_descriptor_memory_mb": 93.75,
+          "query_descriptor_memory_mb": 165.09375,
+          "db_split_index": 1000,
+          "gt_threshold_m": 5.0
+        },
+        "faiss": {
+          "index_type": "IndexFlatL2",
+          "index_build_time_seconds": 0.04708716832101345,
+          "index_build_time_ms": 47.08716832101345,
+          "total_search_time_seconds": 0.07126419991254807,
+          "total_search_time_ms": 71.26419991254807,
+          "search_time_per_query_seconds": 4.0468029479016504e-05,
+          "search_time_per_query_ms": 0.0404680294790165
+        },
+        "evaluation_timing": {
+          "descriptor_normalization_time_seconds": 0.2284790240228176,
+          "descriptor_normalization_time_ms": 228.4790240228176,
+          "ground_truth_matching_total_time_seconds": 0.07907300442457199,
+          "ground_truth_matching_total_time_ms": 79.07300442457199,
+          "ground_truth_matching_per_query_time_seconds": {
+            "count": 1761,
+            "mean": 4.237267246373603e-05,
+            "std": 9.025979038215613e-06,
+            "min": 4.052557051181793e-05,
+            "median": 4.139915108680725e-05,
+            "p90": 4.300661385059357e-05,
+            "p95": 4.6914443373680115e-05,
+            "p99": 5.360431969165802e-05,
+            "max": 0.0004031248390674591,
+            "sum": 0.07461827620863914
+          },
+          "ground_truth_matching_per_query_time_ms": {
+            "count": 1761,
+            "mean": 0.04237267246373603,
+            "std": 0.009025979038215611,
+            "min": 0.04052557051181793,
+            "median": 0.04139915108680725,
+            "p90": 0.04300661385059357,
+            "p95": 0.046914443373680115,
+            "p99": 0.05360431969165802,
+            "max": 0.4031248390674591,
+            "sum": 74.61827620863914
+          },
+          "precision_recall_time_seconds": 0.03680821694433689,
+          "precision_recall_time_ms": 36.80821694433689,
+          "total_evaluation_time_seconds": 0.46300562284886837,
+          "total_evaluation_time_ms": 463.00562284886837
+        },
+        "ground_truth": {
+          "num_queries_with_ground_truth": 454,
+          "num_true_positive_top1": 406,
+          "positive_count_per_query": {
+            "count": 1761,
+            "mean": 3.6053378762067005,
+            "std": 6.808265253794198,
+            "min": 0.0,
+            "median": 0.0,
+            "p90": 12.0,
+            "p95": 20.0,
+            "p99": 27.0,
+            "max": 28.0,
+            "sum": 6349.0
+          }
+        }
+      }
+    },
+    {
+      "sequence": "06",
+      "num_images": 1101,
+      "db_split_index": 1000,
+      "query_count": 101,
+      "inference": {
+        "num_batches": 9,
+        "num_images": 1101,
+        "batch_size": {
+          "count": 9,
+          "mean": 122.33333333333333,
+          "std": 16.027753706895076,
+          "min": 77.0,
+          "median": 128.0,
+          "p90": 128.0,
+          "p95": 128.0,
+          "p99": 128.0,
+          "max": 128.0,
+          "sum": 1101.0
+        },
+        "batch_wall_time_seconds": {
+          "count": 9,
+          "mean": 0.47144811993671787,
+          "std": 0.04416302049845906,
+          "min": 0.3467562682926655,
+          "median": 0.4858070518821478,
+          "p90": 0.4912502847611904,
+          "p95": 0.49151569083333013,
+          "p99": 0.49172801569104196,
+          "max": 0.4917810969054699,
+          "sum": 4.243033079430461
+        },
+        "batch_wall_time_ms": {
+          "count": 9,
+          "mean": 471.4481199367179,
+          "std": 44.16302049845907,
+          "min": 346.7562682926655,
+          "median": 485.8070518821478,
+          "p90": 491.2502847611904,
+          "p95": 491.51569083333015,
+          "p99": 491.72801569104195,
+          "max": 491.7810969054699,
+          "sum": 4243.033079430461
+        },
+        "batch_cpu_process_time_seconds": {
+          "count": 9,
+          "mean": 0.47222222222222066,
+          "std": 0.04365973934308736,
+          "min": 0.3499999999999943,
+          "median": 0.4899999999999807,
+          "p90": 0.49200000000000726,
+          "p95": 0.49600000000000366,
+          "p99": 0.49920000000000075,
+          "max": 0.5,
+          "sum": 4.249999999999986
+        },
+        "batch_cpu_process_time_ms": {
+          "count": 9,
+          "mean": 472.2222222222206,
+          "std": 43.65973934308736,
+          "min": 349.9999999999943,
+          "median": 489.9999999999807,
+          "p90": 492.0000000000073,
+          "p95": 496.00000000000364,
+          "p99": 499.2000000000007,
+          "max": 500.0,
+          "sum": 4249.999999999985
+        },
+        "batch_estimated_cpu_utilization_percent": {
+          "count": 9,
+          "mean": 100.18719676358282,
+          "std": 1.0388262010833784,
+          "min": 98.67929783550214,
+          "median": 100.49948325236396,
+          "p90": 101.33223759544855,
+          "p95": 101.5017449682143,
+          "p99": 101.63735086642691,
+          "max": 101.67125234098006,
+          "sum": 901.6847708722454
+        },
+        "per_image_wall_time_seconds": {
+          "count": 9,
+          "mean": 0.0038825545274065593,
+          "std": 0.00022042913392749988,
+          "min": 0.0037809581554029137,
+          "median": 0.003800189180765301,
+          "p90": 0.0039742974875881885,
+          "p95": 0.004238812823616597,
+          "p99": 0.0044504250924393245,
+          "max": 0.0045033281596450064,
+          "sum": 0.03494299074665903
+        },
+        "per_image_wall_time_ms": {
+          "count": 9,
+          "mean": 3.8825545274065596,
+          "std": 0.22042913392749983,
+          "min": 3.7809581554029137,
+          "median": 3.800189180765301,
+          "p90": 3.974297487588188,
+          "p95": 4.238812823616597,
+          "p99": 4.450425092439325,
+          "max": 4.503328159645006,
+          "sum": 34.942990746659035
+        },
+        "per_image_cpu_process_time_seconds": {
+          "count": 9,
+          "mean": 0.003890467171717156,
+          "std": 0.00023664244521880978,
+          "min": 0.00374999999999992,
+          "median": 0.003828125000000071,
+          "p90": 0.004034090909090894,
+          "p95": 0.004289772727272683,
+          "p99": 0.004494318181818114,
+          "max": 0.0045454545454544715,
+          "sum": 0.035014204545454404
+        },
+        "per_image_cpu_process_time_ms": {
+          "count": 9,
+          "mean": 3.890467171717156,
+          "std": 0.2366424452188097,
+          "min": 3.74999999999992,
+          "median": 3.828125000000071,
+          "p90": 4.034090909090894,
+          "p95": 4.289772727272682,
+          "p99": 4.494318181818113,
+          "max": 4.545454545454471,
+          "sum": 35.014204545454405
+        },
+        "ram_rss_before_mb": {
+          "count": 9,
+          "mean": 5951.689670138889,
+          "std": 24.697482482525086,
+          "min": 5922.453125,
+          "median": 5946.328125,
+          "p90": 5984.72890625,
+          "p95": 5989.53046875,
+          "p99": 5993.37171875,
+          "max": 5994.33203125,
+          "sum": 53565.20703125
+        },
+        "ram_rss_after_mb": {
+          "count": 9,
+          "mean": 5951.689670138889,
+          "std": 24.697482482525086,
+          "min": 5922.453125,
+          "median": 5946.328125,
+          "p90": 5984.72890625,
+          "p95": 5989.53046875,
+          "p99": 5993.37171875,
+          "max": 5994.33203125,
+          "sum": 53565.20703125
+        },
+        "ram_rss_delta_mb": {
+          "count": 9,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "median": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "p99": 0.0,
+          "max": 0.0,
+          "sum": 0.0
+        },
+        "torch_cuda_memory_allocated_mb": {
+          "count": 9,
+          "mean": 490.46875,
+          "std": 19.76860637871922,
+          "min": 434.5546875,
+          "median": 497.4580078125,
+          "p90": 497.4580078125,
+          "p95": 497.4580078125,
+          "p99": 497.4580078125,
+          "max": 497.4580078125,
+          "sum": 4414.21875
+        },
+        "torch_cuda_memory_reserved_mb": {
+          "count": 9,
+          "mean": 1378.888888888889,
+          "std": 247.75814570954495,
+          "min": 686.0,
+          "median": 1488.0,
+          "p90": 1488.0,
+          "p95": 1488.0,
+          "p99": 1488.0,
+          "max": 1488.0,
+          "sum": 12410.0
+        },
+        "torch_cuda_max_memory_allocated_mb": {
+          "count": 9,
+          "mean": 1304.1406792534722,
+          "std": 29.892452432897137,
+          "min": 1224.3017578125,
+          "median": 1310.1767578125,
+          "p90": 1316.48681640625,
+          "p95": 1329.10693359375,
+          "p99": 1339.20302734375,
+          "max": 1341.72705078125,
+          "sum": 11737.26611328125
+        },
+        "torch_cuda_max_memory_reserved_mb": {
+          "count": 9,
+          "mean": 1468.0,
+          "std": 37.712361663282536,
+          "min": 1388.0,
+          "median": 1488.0,
+          "p90": 1488.0,
+          "p95": 1488.0,
+          "p99": 1488.0,
+          "max": 1488.0,
+          "sum": 13212.0
+        },
+        "nvml_gpu_vram": null,
+        "input_shape_examples": [
+          {
+            "shape": [
+              128,
+              3,
+              96,
+              512
+            ],
+            "dtype": "torch.float32"
+          }
+        ],
+        "local_feature_shape_examples": [
+          {
+            "shape": [
+              128,
+              768,
+              6,
+              32
+            ],
+            "dtype": "torch.float32"
+          }
+        ],
+        "global_descriptor_shape_examples": [
+          {
+            "shape": [
+              128,
+              24576
+            ],
+            "dtype": "torch.float32"
+          }
+        ],
+        "mean_fps_single_stream_equivalent": 257.56238397712156,
+        "p95_fps_single_stream_equivalent": 235.9151115209636,
+        "worst_case_fps_single_stream_equivalent": 222.05799012409284,
+        "sequence_level": {
+          "sequence": "06",
+          "total_inference_wall_time_seconds": 5.99395090341568,
+          "total_inference_cpu_process_time_seconds": 5.680000000000007,
+          "estimated_cpu_utilization_percent": 94.76220428771336,
+          "ram_rss_start_mb": 5918.33203125,
+          "ram_rss_end_mb": 5997.4765625,
+          "ram_rss_delta_mb": 79.14453125,
+          "nvml_gpu_vram_sequence_delta": null,
+          "descriptor_array": {
+            "shape": [
+              1101,
+              24576
+            ],
+            "dtype": "float32",
+            "nbytes": 108232704,
+            "nbytes_mb": 103.21875
+          }
+        }
+      },
+      "evaluation": {
+        "sequence": "06",
+        "metrics": {
+          "recall_at1": 0.9999999999009902,
+          "max_f1": 0.995024870523007,
+          "auc": 0.9851485142407929,
+          "recall_at1_percent": 99.99999999009901,
+          "max_f1_percent": 99.50248705230071,
+          "auc_percent": 98.51485142407928
+        },
+        "dataset": {
+          "num_descriptors_total": 1101,
+          "num_database_descriptors": 1000,
+          "num_query_descriptors": 101,
+          "descriptor_dimension": 24576,
+          "descriptor_dtype": "float32",
+          "descriptor_memory_mb": 103.21875,
+          "database_descriptor_memory_mb": 93.75,
+          "query_descriptor_memory_mb": 9.46875,
+          "db_split_index": 1000,
+          "gt_threshold_m": 5.0
+        },
+        "faiss": {
+          "index_type": "IndexFlatL2",
+          "index_build_time_seconds": 0.039443016052246094,
+          "index_build_time_ms": 39.443016052246094,
+          "total_search_time_seconds": 0.04423217475414276,
+          "total_search_time_ms": 44.23217475414276,
+          "search_time_per_query_seconds": 0.00043794232429844316,
+          "search_time_per_query_ms": 0.43794232429844315
+        },
+        "evaluation_timing": {
+          "descriptor_normalization_time_seconds": 0.09121482446789742,
+          "descriptor_normalization_time_ms": 91.21482446789742,
+          "ground_truth_matching_total_time_seconds": 0.008351568132638931,
+          "ground_truth_matching_total_time_ms": 8.351568132638931,
+          "ground_truth_matching_per_query_time_seconds": {
+            "count": 101,
+            "mean": 7.137182251651688e-05,
+            "std": 0.00022729598087281006,
+            "min": 4.4401735067367554e-05,
+            "median": 4.638545215129852e-05,
+            "p90": 5.51808625459671e-05,
+            "p95": 6.078742444515228e-05,
+            "p99": 0.00011564046144485474,
+            "max": 0.002342354506254196,
+            "sum": 0.007208554074168205
+          },
+          "ground_truth_matching_per_query_time_ms": {
+            "count": 101,
+            "mean": 0.07137182251651689,
+            "std": 0.22729598087281014,
+            "min": 0.044401735067367554,
+            "median": 0.04638545215129852,
+            "p90": 0.0551808625459671,
+            "p95": 0.06078742444515228,
+            "p99": 0.11564046144485474,
+            "max": 2.342354506254196,
+            "sum": 7.208554074168205
+          },
+          "precision_recall_time_seconds": 0.036229996010661125,
+          "precision_recall_time_ms": 36.229996010661125,
+          "total_evaluation_time_seconds": 0.21972881257534027,
+          "total_evaluation_time_ms": 219.72881257534027
+        },
+        "ground_truth": {
+          "num_queries_with_ground_truth": 101,
+          "num_true_positive_top1": 101,
+          "positive_count_per_query": {
+            "count": 101,
+            "mean": 13.287128712871286,
+            "std": 2.031127247201437,
+            "min": 9.0,
+            "median": 13.0,
+            "p90": 16.0,
+            "p95": 18.0,
+            "p99": 18.0,
+            "max": 19.0,
+            "sum": 1342.0
+          }
+        }
+      }
+    }
+  ]
+}
